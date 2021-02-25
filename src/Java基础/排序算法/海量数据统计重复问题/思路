@@ -1,0 +1,2 @@
+可以设计一个hash函数，对key进行hash，hash key结果对应的位置上count+1，
+根据count建立一个小顶堆，topK问题，每算完一个count就比较即可
