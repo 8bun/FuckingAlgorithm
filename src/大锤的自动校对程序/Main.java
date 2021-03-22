@@ -6,12 +6,12 @@ import java.util.Scanner;
  * @description：
  * @url：https://www.nowcoder.com/test/question/42852fd7045c442192fa89404ab42e92?pid=16516564&tid=31540952
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/15 22:52
  * @level：
  */
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             int num = Integer.parseInt(scanner.nextLine());

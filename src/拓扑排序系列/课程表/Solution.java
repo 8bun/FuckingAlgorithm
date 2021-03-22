@@ -1,18 +1,23 @@
 package 拓扑排序系列.课程表;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Scanner;
+
 /**
- * @Author: Jack
- * @Date: 2020/7/9 17:11
- * @Description:
- *  int[][] prerequisites中有[A,B]表示B->A
- *  判断二维数组表示的有向图是否能组成合法的拓扑图，即不能出现环形
- * @Url: https://leetcode-cn.com/problems/course-schedule/
- * @限制: 
- * @Level: 
+ * @author cwq
+ * @since 2020/7/9 17:11
+ * @Description: int[][] prerequisites中有[A,B]表示B->A
+ * 判断二维数组表示的有向图是否能组成合法的拓扑图，即不能出现环形
+ * @link https://leetcode-cn.com/problems/course-schedule/
+ * @限制:
+ * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         if (numCourses == 0) return true;
@@ -39,9 +44,5 @@ public class Solution {
             }
         }
         return cnt == numCourses;
-    }
-
-    public static void main(String[] args){
-        Scanner scanner=new Scanner(System.in);
     }
 }

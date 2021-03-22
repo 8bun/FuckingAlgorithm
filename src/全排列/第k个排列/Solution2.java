@@ -9,7 +9,7 @@ import java.util.List;
  * @description： 回溯法
  * @url： https://leetcode-cn.com/problems/permutation-sequence/solution/hui-su-jian-zhi-python-dai-ma-java-dai-ma-by-liwei/
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/4/12 14:15
  * @level：
  */
@@ -32,6 +32,12 @@ public class Solution2 {
      * 从根结点到叶子结点的路径
      */
     private List<Integer> path;
+
+    public static void main(String[] args) {
+        int n = 4, k = 9;
+        String res = new Solution2().getPermutation(n, k);
+        System.out.println(res);
+    }
 
     public String getPermutation(int n, int k) {
         this.n = n;
@@ -59,6 +65,7 @@ public class Solution2 {
 
     /**
      * @param index 在这一步之前已经选择了几个数字，其值恰好等于这一步需要确定的索引位置
+     *
      * @return
      */
     private void dfs(int index) {
@@ -68,7 +75,7 @@ public class Solution2 {
 
         // 还未确定的数字的全排列的个数，第 1 次进入的时候是 n - 1
         int cnt = factorial[n - 1 - index];
-        System.out.println("index="+index+" cnt="+cnt);
+        System.out.println("index=" + index + " cnt=" + cnt);
         for (int i = 1; i <= n; i++) {
             if (used[i]) {
                 continue;
@@ -81,12 +88,6 @@ public class Solution2 {
             used[i] = true;
             dfs(index + 1);
         }
-    }
-
-    public static void main(String[] args) {
-        int n=4,k=9;
-        String res=new Solution2().getPermutation(n,k);
-        System.out.println(res);
     }
 }
 

@@ -4,12 +4,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/27 13:08
- * @Description:
- * 不含前导零且相邻两个数字之差至少为 2 的正整数被称为 windy 数。
+ * @author cwq
+ * @since 2020/5/27 13:08
+ * @Description: 不含前导零且相邻两个数字之差至少为 2 的正整数被称为 windy 数。
  * 求出在[a,b]内总共有多少个 windy 数
- * @Url: https://www.luogu.com.cn/problem/P2657#submit
+ * @link https://www.luogu.com.cn/problem/P2657#submit
  * @限制: 1≤a≤b≤2×10^9
  * @Level:
  */
@@ -29,6 +28,7 @@ public class Main {
 
     /**
      * 统计[0,num]有多少个数字是windy数
+     *
      * @param num
      *
      * @return
@@ -36,7 +36,7 @@ public class Main {
     private static long solve(long num) {
         int k = 0; //记录有多少数位
         while (num != 0) {
-            digit[++k] = num % 10;
+            digit[++ k] = num % 10;
             num /= 10;
         }
         //最高位一定要限制,这里一开始preSelectNum=-2是防止进入
@@ -44,15 +44,17 @@ public class Main {
         //高位实际上不用考虑windy数的限制,当curSelect选到最小0也不能满足上面的式子
         //开始ifZero设置为true是为了使得如果高位也选了0那么传给下一位的ifZero为true
         //也就是(ifZero && curSelect == 0)为true
-        return dfs(k, -2, true,true);
+        return dfs(k, - 2, true, true);
     }
 
     /**
      * dp[i][j] 表示搜到第 i 位，在前驱是 j 的情况下,的最多方案数目
+     *
      * @param curPos
      * @param preSelectNum 前驱，即上一位是谁
-     * @param ifZero ifZero为true，表示curPos前面都是零，反过来，ifZero为false，表示没有前导零
+     * @param ifZero       ifZero为true，表示curPos前面都是零，反过来，ifZero为false，表示没有前导零
      * @param curLimit
+     *
      * @return
      */
     private static long dfs(int curPos, int preSelectNum, boolean ifZero, boolean curLimit) {
@@ -68,7 +70,7 @@ public class Main {
          *  当然，如果要进行记忆，也可以扩充dp一维来记录这个ifZero状态，然后这里判断就不用卡isZero了
          *  对curLimit也是同样的道理
          */
-        if (!curLimit && !ifZero  && dp[curPos][preSelectNum] != - 1)
+        if (! curLimit && ! ifZero && dp[curPos][preSelectNum] != - 1)
             return dp[curPos][preSelectNum];
 
         long up_bound = curLimit ? digit[curPos] : 9;
@@ -77,13 +79,13 @@ public class Main {
         for (int curSelect = 0; curSelect <= up_bound; curSelect++) {
             if ((Math.abs(curSelect - preSelectNum) < 2)) continue; //每次都在这里剪去不是windy数(差值>=2)的分支
             //这里要注意"前导0"思想对curSelect的传递影响
-            cnt += dfs(curPos - 1, (ifZero && curSelect == 0) ? -2 : curSelect, ifZero && curSelect == 0, curLimit && (curSelect == up_bound));
+            cnt += dfs(curPos - 1, (ifZero && curSelect == 0) ? - 2 : curSelect, ifZero && curSelect == 0, curLimit && (curSelect == up_bound));
         }
 
         /**
          * 没有最高位限制且没有前导0时记录结果
          */
-        if (!curLimit && !ifZero) dp[curPos][preSelectNum] = cnt;
+        if (! curLimit && ! ifZero) dp[curPos][preSelectNum] = cnt;
         return cnt;
     }
 }

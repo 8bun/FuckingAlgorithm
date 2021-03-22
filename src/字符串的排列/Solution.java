@@ -13,8 +13,8 @@ import java.util.HashSet;
  * 得到第二个位置的字符，找到之后，假设是a，那么字符串变成了ba_，然后继续搜索下一个位置的字符，肯定是c，
  * 那么此时退出递归，进入搜索第一个位置的其他情况，此时，a已经到了index+1的位置(也可能到了index+n的位置)，那么如果还要实现index处的位置
  * 还是a，那么我们就要把a交换回来。
- * @url: https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/
- * @author: Jack
+ * @link  https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/
+ * @author   cwq
  * @createTime: 2020/3/1 19:06
  * @level: 中等
  */
@@ -33,7 +33,7 @@ public class Solution {
         res = new ArrayList<>(new HashSet<>(res));  //去重
         return res.toArray(new String[res.size()]);
     }
-    
+
     //寻找place位置要确定的字符
     private void FindChar(int place) {
         if (place == s.length() - 1) {

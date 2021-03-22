@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @description：
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/28 16:10
  * @level：
  */
@@ -16,7 +16,7 @@ public class Main7 {
         String str = scanner.next();
         long n = scanner.nextInt();
         int len = str.length();
-        if (n <= 0||len==0) {
+        if (n <= 0 || len == 0) {
             System.out.println("0 0");
 
         } else {
@@ -34,10 +34,10 @@ public class Main7 {
                     x++;
                 }
             }
-            x*=(n/len);
-            y*=(n/len);
-            long tmp=n%len;
-            for(int i=0;i<tmp;i++){
+            x *= (n / len);
+            y *= (n / len);
+            long tmp = n % len;
+            for (int i = 0; i < tmp; i++) {
                 char ch = str.charAt(i);
                 if (ch == 'W') {
                     y++;

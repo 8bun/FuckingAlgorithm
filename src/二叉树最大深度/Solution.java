@@ -8,7 +8,7 @@ import java.util.Queue;
  * @description：
  * @url： https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime： 2020/4/1 9:33
  * @level：
  */
@@ -16,6 +16,7 @@ class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
+
     TreeNode(int x) { val = x; }
 }
 
@@ -32,26 +33,28 @@ public class Solution {
 
     /**
      * 非递归
+     *
      * @param root
+     *
      * @return
      */
     public int maxDepth(TreeNode root) {
-        if(root==null)
+        if (root == null)
             return 0;
-        Queue<TreeNode> queue=new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        int depth=0;
-        while (!queue.isEmpty()){
-            int size=queue.size();
+        int depth = 0;
+        while (! queue.isEmpty()) {
+            int size = queue.size();
             depth++;
             // 遍历size个节点的下一层的左右节点（不存在递归，这样就可以遍历所有的左右子树节点），
             // 遍历完进入下一次循环，depth+1;
             while (size-- != 0) {
-                TreeNode first=queue.poll();
-                if(first.left!=null){
+                TreeNode first = queue.poll();
+                if (first.left != null) {
                     queue.offer(first.left);
                 }
-                if(first.right!=null){
+                if (first.right != null) {
                     queue.offer(first.right);
                 }
             }

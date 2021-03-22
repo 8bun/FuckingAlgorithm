@@ -5,14 +5,20 @@ import java.util.Deque;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/7/9 17:26
+ * @author cwq
+ * @since 2020/7/9 17:26
  * @Description: 根据图，图的元素个数为n,如果是拓扑图，则输出0->n-1号的任意一种拓扑路径，否则输出[]
- * @Url: https://leetcode-cn.com/problems/course-schedule-ii/
+ * @link https://leetcode-cn.com/problems/course-schedule-ii/
  * @限制:
  * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
+
+    //DFS
 
     //BFS
     public int[] findOrder(int numCourses, int[][] prerequisites) {
@@ -33,20 +39,12 @@ public class Solution {
             int cur = deque.poll();
             res[cnt++] = cur;
             for (int[] p : prerequisites) {
-                if (p[1] == cur){
+                if (p[1] == cur) {
                     inDegrees[p[0]]--;
                     if (inDegrees[p[0]] == 0) deque.offer(p[0]);
                 }
             }
         }
         return cnt == numCourses ? res : new int[]{};
-    }
-
-    //DFS
-
-
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
     }
 }

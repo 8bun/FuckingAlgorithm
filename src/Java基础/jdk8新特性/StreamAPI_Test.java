@@ -7,20 +7,20 @@ import java.util.List;
  * @description：StreamAPL针对集合或数组进行操作，关注的是做什么，而不是怎么做
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/27 14:44
  * @level：
  */
 public class StreamAPI_Test {
 
     public static void main(String[] args) {
-        List<String> list=new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add("a");
         list.add("hello");
         list.add("world");
-        long cnt=0;
-        for (String s:list){
-            if(s.length()>3)
+        long cnt = 0;
+        for (String s : list) {
+            if (s.length() > 3)
                 cnt++;
         }
         System.out.println(cnt);

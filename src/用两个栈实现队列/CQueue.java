@@ -4,43 +4,48 @@ import java.util.Stack;
 
 /**
  * @description:
- * @url:https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/
- * @author:Jack
- * @createTime:2020/2/21 14:46
- * @level:简单
+ * @link  https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/
+ * @author   cwq
+ * @createTime: 2020/2/21 14:46
+ * @level: 简单
  */
 public class CQueue {
 
-    private Stack<Integer> stackA;
-    private Stack<Integer> stackB;
+    Stack<Integer> in;
+    Stack<Integer> out;
 
     public CQueue() {
-        stackA=new Stack<>();
-        stackB=new Stack<>();
-    }
-    //往A中加入元素
-    public void appendTail(int value) {
-        stackA.push(value);
+        in = new Stack<>();
+        out = new Stack<>();
     }
 
     /**
-     * 栈A输入，输入到栈B后输出
+     * 往in中加入元素
+     */
+    public void appendTail(int value) {
+        in.push(value);
+    }
+
+    /**
+     * 栈in输入，输入到栈out后输出
      * 删除时，分两种情况：
-     * 栈B非空，直接出栈，
-     * 栈B空，如果A非空，A出栈到B，B再出栈
-     * @return
+     * 栈out非空，直接出栈，
+     * 栈out空，如果in非空，in出栈到out，out再出栈
      */
     public int deleteHead() {
-        if(!stackB.isEmpty())
-            return stackB.pop();
-        else{
-            while (!stackA.isEmpty()){
-                stackB.push(stackA.pop());
+        if (! out.isEmpty()) {
+            return out.pop();
+        } else {
+            if (! in.isEmpty()) {
+                while (! in.isEmpty()) {
+                    out.push(in.pop());
+                }
             }
         }
-        if(!stackB.isEmpty())
-            return stackB.pop();
-        else
-            return -1;
+        if (! out.isEmpty()) {
+            return out.pop();
+        } else {
+            return - 1;
+        }
     }
 }

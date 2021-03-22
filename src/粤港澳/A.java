@@ -3,10 +3,10 @@ package 粤港澳;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/4/25 09:47
+ * @author cwq
+ * @since 2020/4/25 09:47
  * @Description:
- * @Url:
+ * @link
  * @限制:
  * @Level:
  */
@@ -15,26 +15,26 @@ public class A {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
-            String date=scanner.nextLine();
+            String date = scanner.nextLine();
             String info = scanner.nextLine();
             int k;
-            if (isValid(date,info)) {
+            if (isValid(date, info)) {
                 for (; ; ) {
                     k = 0;
                     for (char ch : date.toCharArray())
                         k += (ch - '0');
-                    date=String.valueOf(k);
+                    date = String.valueOf(k);
                     if (k < 10)
                         break;
                 }
                 StringBuilder newinfo = new StringBuilder("");
-                int ch_a=0;
-                int ch_A=0;
-                int ch_space=0;
-                boolean flag=true;
+                int ch_a = 0;
+                int ch_A = 0;
+                int ch_space = 0;
+                boolean flag = true;
                 for (char ch : info.toCharArray()) {
-                    if (!(ch>='a'&&ch<='z'||ch>='A'&&ch<='Z'||ch==' ')){
-                        flag=false;
+                    if (! (ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' || ch == ' ')) {
+                        flag = false;
                         break;
                     }
                     char newch;
@@ -46,8 +46,7 @@ public class A {
                     } else if (ch == ' ') {
                         ch_space++;
                         newch = '#';
-                    }
-                    else {
+                    } else {
                         ch_a++;
                         newch = (char) (ch + k);
                         if (newch > 'z')
@@ -55,23 +54,24 @@ public class A {
                     }
                     newinfo.append(newch);
                 }
-                if (ch_A==info.length()||ch_a==info.length()||ch_space==info.length())
-                    flag=false;
+                if (ch_A == info.length() || ch_a == info.length() || ch_space == info.length())
+                    flag = false;
                 if (flag)
                     System.out.println(newinfo.toString());
                 else System.out.println("none");
-            }
-            else System.out.println("none");
+            } else System.out.println("none");
         }
     }
-    private static boolean isUpper(char ch){
-        return ch>='A'&&ch<='Z';
+
+    private static boolean isUpper(char ch) {
+        return ch >= 'A' && ch <= 'Z';
     }
-    private static boolean isValid(String str,String info){
-        if (str.isEmpty()||info.isEmpty())
+
+    private static boolean isValid(String str, String info) {
+        if (str.isEmpty() || info.isEmpty())
             return false;
         else {
-            if (str.length() == 8&&info.length()<=128) {
+            if (str.length() == 8 && info.length() <= 128) {
                 // 闰年标志
                 boolean isLeapYear = false;
                 String year = str.substring(0, 4);

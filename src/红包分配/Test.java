@@ -1,13 +1,10 @@
 package 红包分配;
 
-import java.text.DecimalFormat;
-import java.util.Random;
-
 /**
  * @description：
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/12 18:44
  * @level：
  */

@@ -1,17 +1,15 @@
 package 几何系列.圆形靶内的最大飞镖数量;
 
 /**
- *
- * @Author: Jack
- * @Date: 2020/4/22 13:30
+ * @author cwq
+ * @since 2020/4/22 13:30
  * @Description: 几何问题
  * 题意：在某个区域内有若干个点，移动r为半径的圆，使得这个圆能覆盖尽量多的点，求出覆盖最多的点的个数
  * 分析：在移动过程中，如果要使得圆尽量能覆盖住更多的点，那么这个圆如果恰好有两个点在圆周上的话，就能把它所能利用的空间最大化了
  * 或者说，两个点是可以固定一个圆的，那么就可以对所有点依次两两枚举，确定所有的圆，分别求出各个圆的圆心，然后再枚举所有的点
  * ，求出被圆包住的点的个数。
  * 最后返回最大值即可
- *
- * @Url: https://leetcode-cn.com/contest/weekly-contest-189/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/
+ * @link https://leetcode-cn.com/contest/weekly-contest-189/problems/maximum-number-of-darts-inside-of-a-circular-dartboard/
  * https://www.bilibili.com/video/BV12z4y1R7GW?t=970&p=5
  * @限制:
  * @Level:
@@ -19,15 +17,23 @@ package 几何系列.圆形靶内的最大飞镖数量;
 public class Solution {
     double eps = 1e-8;
 
+    public static void main(String[] args) {
+        int[][] points = {{- 2, 0}, {2, 0}, {0, 2}, {0, - 2}};
+        int res = new Solution().numPoints(points, 2);
+        System.out.println(res);
+        System.out.println(1.222222222222222222 * 2.12323232313232323123);
+        System.out.println();
+    }
+
     public int numPoints(int[][] points, int r) {
 
         int n = points.length;
         if (n == 1)
             return 1;
         int ans = 1;
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             int x1 = points[i][0], y1 = points[i][1];
-            for (int j = i + 1; j < n; j++){
+            for (int j = i + 1; j < n; j++) {
                 int x2 = points[j][0], y2 = points[j][1];
                 int d = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
                 if (d > r * r * 4) //如果(根号d)>2r也就是超出了直径
@@ -62,10 +68,12 @@ public class Solution {
 
     /**
      * 求出被(xc,yc)为圆心,r为半径的圆覆盖的点的个数
+     *
      * @param points
      * @param xc
      * @param yc
      * @param r
+     *
      * @return
      */
     public int count(int[][] points, double xc, double yc, int r) {
@@ -93,12 +101,5 @@ public class Solution {
                 ans++;
         }
         return ans;
-    }
-    public static void main(String[] args) {
-        int[][] points = {{-2,0},{2,0},{0,2},{0,-2}};
-        int res = new Solution().numPoints(points, 2);
-        System.out.println(res);
-        System.out.println(1.222222222222222222*2.12323232313232323123);
-        System.out.println();
     }
 }

@@ -9,6 +9,7 @@ import java.util.concurrent.Semaphore;
  * "HOHHHO", "OHHHHO", "HHOHOH", "HOHHOH", "OHHHOH", "HHOOHH", "HOHOHH" 和 "OHHOHH" 都是有效解
  * 如果一个氧线程到达屏障时没有氢线程到达，它必须等候直到两个氢线程到达。
  * 如果一个氢线程到达屏障时没有其它线程到达，它必须等候直到一个氧线程和另一个氢线程到达。
+ *
  * @author cwq
  * @since 2021/02/10
  */
@@ -17,6 +18,7 @@ public class H2O {
     private Semaphore hSem = new Semaphore(2);
     private Semaphore oSem = new Semaphore(1);
     private CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
+
     public H2O() {
 
     }

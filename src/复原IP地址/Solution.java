@@ -12,13 +12,19 @@ import java.util.List;
  * begin：截取 ip 段的起始位置；
  * path：记录从根结点到叶子结点的一个路径（回溯算法常规变量，是一个栈）；
  * res：记录结果集的变量，常规变量。
- * @author： Jack
+ * @author： cwq
  * @createTime： 2020/4/10 23:23
  * @level：
  */
 public class Solution {
 
     private List<String> res = new ArrayList<>();
+
+    public static void main(String[] args) {
+        List<String> res = new Solution().restoreIpAddresses("010010");
+        for (String s : res)
+            System.out.println(s);
+    }
 
     public List<String> restoreIpAddresses(String s) {
         int len = s.length();
@@ -44,7 +50,7 @@ public class Solution {
         for (int i = 1; i <= (to_spilt.length() >= 3 ? 3 : to_spilt.length()); i++) {
             String left = to_spilt.substring(0, i);  //分割出来的
             String right = to_spilt.substring(i);  //剩余未分配的
-            if (!isValid(left, right, cur_spilt_cnt + 1))
+            if (! isValid(left, right, cur_spilt_cnt + 1))
                 continue;
             cur_split_path += "." + left; //选择分割
             cur_spilt_cnt++;
@@ -61,6 +67,7 @@ public class Solution {
      *
      * @param to_spilt
      * @param cur_spilt_cnt
+     *
      * @return
      */
     private boolean isValid(String split, String to_spilt, int cur_spilt_cnt) {
@@ -69,12 +76,6 @@ public class Solution {
             return false;
         int s = Integer.parseInt(split);
         return to_spilt.length() <= (4 - cur_spilt_cnt) * 3 && s >= 0 && s <= 255;
-    }
-
-    public static void main(String[] args) {
-        List<String> res = new Solution().restoreIpAddresses("010010");
-        for (String s : res)
-            System.out.println(s);
     }
 
 }

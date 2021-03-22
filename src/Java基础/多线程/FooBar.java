@@ -1,17 +1,14 @@
 package 基本问题.多线程;
 
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @description：
- * 两个不同的线程将会共用一个 FooBar 实例。其中一个线程将会调用 foo() 方法，
+ * @description： 两个不同的线程将会共用一个 FooBar 实例。其中一个线程将会调用 foo() 方法，
  * 另一个线程将会调用 bar() 方法。
  * 请设计修改程序，以确保 "foobar" 被输出 n 次。
  * @url：https://leetcode-cn.com/problems/print-foobar-alternately/
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/28 10:58
  * @level：
  */
@@ -27,7 +24,7 @@ public class FooBar {
 
     public void foo(Runnable printFoo) throws InterruptedException {
 
-        for (int i = 0; i < n; i++ ) {
+        for (int i = 0; i < n; i++) {
             semaphore.acquire();  // 从信号量中获取一个允许机会
             // printFoo.run() outputs "foo". Do not change or remove this line.
             printFoo.run();

@@ -3,10 +3,9 @@ package BFS系列.获取你好友已观看的视频;
 import java.util.*;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/25 17:34
- * @Description:
- * 不能用dfs。比如A的好友是B和C；而B的好友是A和C。如果用dfs的搜索路径是A->B->C，这样B是level 1，C是level 2，是错误的。其实B和C都是 level 1好友。
+ * @author cwq
+ * @since 2020/5/25 17:34
+ * @Description: 不能用dfs。比如A的好友是B和C；而B的好友是A和C。如果用dfs的搜索路径是A->B->C，这样B是level 1，C是level 2，是错误的。其实B和C都是 level 1好友。
  * 也就是说，在人群中，同一个人，可能有多个 level，必须找到level最小的值才是真实的 level，
  * dfs 搜到的 level 不是最小 level。
  * 如
@@ -17,17 +16,30 @@ import java.util.*;
  * 这个样例，应该输出的是[]
  * 就跟在迷宫中找两点之间的最短路径一样，不能用dfs，要用bfs。
  * 下面给出了当时做的错误dfs，待补bfs
- * @Url: https://leetcode-cn.com/contest/weekly-contest-170/problems/get-watched-videos-by-your-friends/
+ * @link https://leetcode-cn.com/contest/weekly-contest-170/problems/get-watched-videos-by-your-friends/
  * @限制:
  * @Level:
  */
 public class Solution {
+    HashMap<String, Integer> map = new HashMap<>();
     /**
      * 错误做法
      */
     private List<Integer> ids = new ArrayList<>();
     private boolean[] vis;
-    HashMap<String,Integer> map = new HashMap<>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<String> list1 = new ArrayList<>();
+        List<String> list2 = new ArrayList<>();
+        list1.add("A");
+        list1.add("B");
+        list1.add("C");
+        list2.add("A");
+        list2.add("D");
+//        System.out.println(res.toString());
+    }
+
     public List<String> watchedVideosByFriends(List<List<String>> watchedVideos, int[][] friends, int id, int level) {
         vis = new boolean[friends.length];
         dfs(id, 0, watchedVideos, friends, level);
@@ -60,27 +72,16 @@ public class Solution {
     }
 
     private void dfs(int id, int curLevel, List<List<String>> watchedVideos, int[][] friends, int level) {
-        if(level == curLevel) {
+        if (level == curLevel) {
             ids.add(id);
             return;
         }
         vis[id] = true;
         for (int f : friends[id]) {
             System.out.println(f);
-            if (!vis[f])
+            if (! vis[f])
                 dfs(f, curLevel + 1, watchedVideos, friends, level);
         }
-    }
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        List<String> list1 = new ArrayList<>();
-        List<String> list2 = new ArrayList<>();
-        list1.add("A");
-        list1.add("B");
-        list1.add("C");
-        list2.add("A");
-        list2.add("D");
-//        System.out.println(res.toString());
     }
 }
 

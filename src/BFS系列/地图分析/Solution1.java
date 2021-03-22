@@ -4,13 +4,14 @@ import java.util.ArrayDeque;
 
 /**
  * BFS
+ *
  * @author cwq
- * @since 2021/02/21
  * @link https://leetcode-cn.com/problems/as-far-from-land-as-possible/solution/jian-dan-java-miao-dong-tu-de-bfs-by-sweetiee/
+ * @since 2021/02/21
  */
 public class Solution1 {
 
-    private final int[][] dir = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    private final int[][] dir = {{0, 1}, {0, - 1}, {1, 0}, {- 1, 0}};
 
     public int maxDistance(int[][] grid) {
         ArrayDeque<int[]> arrayDeque = new ArrayDeque<>();
@@ -24,7 +25,7 @@ public class Solution1 {
         }
         int[] point = null;
         boolean hasOcean = false;
-        while (!arrayDeque.isEmpty()) {
+        while (! arrayDeque.isEmpty()) {
             point = arrayDeque.poll();
             int x = point[0], y = point[1];
             for (int[] d : dir) {
@@ -37,8 +38,8 @@ public class Solution1 {
                 arrayDeque.offer(new int[]{newX, newY});
             }
         }
-        if (point == null || !hasOcean) {
-            return -1;
+        if (point == null || ! hasOcean) {
+            return - 1;
         }
         return grid[point[0]][point[1]] - 1;
     }

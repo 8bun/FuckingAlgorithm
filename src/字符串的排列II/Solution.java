@@ -9,11 +9,16 @@ import java.util.Arrays;
  * @url： https://leetcode-cn.com/problems/permutation-in-string/
  * @限制： 输入的字符串只包含小写字母
  * 两个字符串的长度都在 [1, 10,000] 之间
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/4/11 21:11
  * @level：
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        boolean res = new Solution().checkInclusion("ab", "eidbaooo");
+        System.out.println(res);
+    }
 
     public boolean checkInclusion(String s1, String s2) {
         int len1 = s1.length();
@@ -42,10 +47,5 @@ public class Solution {
                 return true;
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        boolean res = new Solution().checkInclusion("ab", "eidbaooo");
-        System.out.println(res);
     }
 }

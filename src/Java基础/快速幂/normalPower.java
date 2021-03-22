@@ -12,7 +12,7 @@ package Java基础.快速幂;
  * 每次对结果进行取模。未完待续
  * @url： https://blog.csdn.net/qq_19782019/article/details/85621386
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime: 2020/4/7 23:23
  * @level：
  */

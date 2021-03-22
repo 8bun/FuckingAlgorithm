@@ -3,8 +3,8 @@ package DFS系列.矩阵中的最长递增路径;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/7/15 19:47
+ * @author cwq
+ * @since 2020/7/15 19:47
  * @Description: 记忆化深度优先搜索
  * 另外一种做法：
  * 拓扑排序做法
@@ -14,14 +14,21 @@ import java.util.Scanner;
  * 从图中删除这些结点。然后图中就出现了新的入度为 0 的结点了，它们路径长度加 1 。
  * 接着重复上面的操作，直到最后没有结点。
  * 见拓扑排序系列
- * @Url: https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix/
+ * @link https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix/
  * @限制:
  * @Level:
  */
 public class Solution {
 
     private int[][] dirs = {{1, 0}, {- 1, 0}, {0, 1}, {0, - 1}};
-    private int[][] memo; //memo[i][j]表示dfs(i,j)的结果
+    /**
+     * memo[i][j]表示dfs(i,j)的结果
+     */
+    private int[][] memo;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
 
     public int longestIncreasingPath(int[][] matrix) {
         int m = matrix.length;
@@ -49,9 +56,5 @@ public class Solution {
         }
         memo[i][j] = max;
         return max;
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
     }
 }

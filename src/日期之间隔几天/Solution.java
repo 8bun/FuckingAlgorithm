@@ -6,14 +6,18 @@ import java.util.Date;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/23 17:37
+ * @author cwq
+ * @since 2020/5/23 17:37
  * @Description:
- * @Url: https://leetcode-cn.com/contest/weekly-contest-177/problems/number-of-days-between-two-dates/
+ * @link https://leetcode-cn.com/contest/weekly-contest-177/problems/number-of-days-between-two-dates/
  * @限制:
  * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
 
     public int daysBetweenDates(String date1, String date2) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -29,9 +33,6 @@ public class Solution {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return  Math.abs((int) ((_date1.getTime() - _date2.getTime()) / (1000*3600*24)));
-    }
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        return Math.abs((int) ((_date1.getTime() - _date2.getTime()) / (1000 * 3600 * 24)));
     }
 }

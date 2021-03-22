@@ -3,14 +3,19 @@ package DP系列.计数型DP.不同路径II;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/4/20 09:33
+ * @author cwq
+ * @since 2020/4/20 09:33
  * @Description:
- * @Url: https://leetcode-cn.com/problems/unique-paths-ii/
+ * @link https://leetcode-cn.com/problems/unique-paths-ii/
  * @限制:
  * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+    }
 
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         if (obstacleGrid[0][0] == 1)  //第一个就是障碍
@@ -29,10 +34,5 @@ public class Solution {
             }
         }
         return dp[m - 1][n - 1];
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
     }
 }

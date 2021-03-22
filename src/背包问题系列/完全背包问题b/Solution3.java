@@ -24,48 +24,49 @@ import java.util.Scanner;
  * =>第二次k=1,dp[i][j]=Max(dp[i][j](上面k=0时式子和之前的dp[i][j]的最大值)，dp[i-1][j-w[i]]+value[i])
  * 比较k=1和k=0时式子和之前的dp[i][j]的最大值，更新给新的dp[i][j]
  * 所以Max(dp[i-1][j-k*w[i]]+k*value[i])=>
- *  dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - k*w[i]] + k*v[i]);
+ * dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - k*w[i]] + k*v[i]);
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/4/6 22:10
  * @level：
  */
 public class Solution3 {
     public static void main(String[] args) {
 
-        Scanner scanner=new Scanner(System.in);
-        int num=scanner.nextInt(); //物品种类
-        int weight_Of_Bag=scanner.nextInt(); //背包容量
-        int[] w=new int[num+1];  //物品重量
-        int[] v=new int[num+1];  //物品价值
-        for (int i=1;i<=num;i++){
-            w[i]=scanner.nextInt();
-            v[i]=scanner.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt(); //物品种类
+        int weight_Of_Bag = scanner.nextInt(); //背包容量
+        int[] w = new int[num + 1];  //物品重量
+        int[] v = new int[num + 1];  //物品价值
+        for (int i = 1; i <= num; i++) {
+            w[i] = scanner.nextInt();
+            v[i] = scanner.nextInt();
         }
 
-        long dp[][]=new long[num+1][weight_Of_Bag+1];
+        long dp[][] = new long[num + 1][weight_Of_Bag + 1];
 
-        for (int i=0;i<=weight_Of_Bag;i++){
-            dp[0][i]=0;  //有0种物品选择，组成容量i的最大价值
+        for (int i = 0; i <= weight_Of_Bag; i++) {
+            dp[0][i] = 0;  //有0种物品选择，组成容量i的最大价值
         }
 
         //填表
-        for (int i=1;i<=num;i++){ //待装入的物品
-            for (int j=1;j<=weight_Of_Bag;j++){  //剩余容量
-                for (int k=0;k*w[i]<=j;k++) {
+        for (int i = 1; i <= num; i++) { //待装入的物品
+            for (int j = 1; j <= weight_Of_Bag; j++) {  //剩余容量
+                for (int k = 0; k * w[i] <= j; k++) {
                     //dp[i][j] = Math.max(dp[i-1][j], dp[i - 1][j - k*w[i]] + k*v[i]);
                     //中其实dp[i-1][j]可以看成dp[i - 1][j - k*w[i]] + k*v[i]中k=0的情况
-                     dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - k*w[i]] + k*v[i]);
+                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - k * w[i]] + k * v[i]);
                     //还可以继续优化
                     //根据上式,dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - w[i]] + v[i], dp[i - 1][j - 2w[i]] + 2v[i], dp[i - 1][j - 3w[i]] + 3v[i],...... );
                     //dp[i][j-v[i]]=Math.max(dp[i][j-v[i]], dp[i - 1][j-v[i] - w[i]] + v[i], dp[i - 1][j-v[i] - 2w[i]] + 2v[i], dp[i - 1][j-v[i] - 3w[i]] + 3v[i],...... );
 
-               }
+                }
             }
         }
         System.out.println(dp[num][weight_Of_Bag]);
     }
+
     //根据上式,①dp[i][j] = Math.max( dp[i - 1][j], dp[i - 1][j - w[i]] + v[i], dp[i - 1][j - 2w[i]] + 2v[i], dp[i - 1][j - 3w[i]] + 3v[i],...... );
     // dp[i][j-w[i]]=Math.max( dp[i - 1][j-w[i]], dp[i - 1][j- w[i] - w[i]] + v[i], dp[i - 1][j-w[i] - 2w[i]] + 2v[i], dp[i - 1][j-w[i] - 3w[i]] + 3v[i],...... );
     //=>②dp[i][j-w[i]]=Math.max( dp[i - 1][j-w[i]], dp[i - 1][j- 2w[i]] + v[i], dp[i - 1][j- 3w[i]] + 2v[i], dp[i - 1][j-4w[i]] + 3v[i],...... );
@@ -78,11 +79,11 @@ public class Solution3 {
     //④右边相比于①右边完全相同，也就是等式成立，这里是要首先考虑装不选w[i]（不管装不装得下）的情况，也就是dp[i - 1][j]的情况，等式才可成立，所以循环要加上
     //或者从理解其表达的意义上来讲，我们可以参照 硬币.背包最大价值问题.应用.硬币找零总方案数.Solution1中
     // dp[i][j]=dp[i][j-coin[i]]的解释(两个解决的方案有点类似，但是一个是求方案数，一个是最大价值)
-    private void Solution2(int num,int dp[][],int weight_Of_Bag,int v[],int w[]){
-        for (int i=1;i<=num;i++) { //待装入的物品
+    private void Solution2(int num, int dp[][], int weight_Of_Bag, int v[], int w[]) {
+        for (int i = 1; i <= num; i++) { //待装入的物品
             for (int j = 1; j <= weight_Of_Bag; j++) {  //剩余容量
                 dp[i][j] = dp[i - 1][j];
-                if(w[i]<=j)
+                if (w[i] <= j)
                     dp[i][j] = Math.max(dp[i][j], dp[i][j - w[i]] + v[i]);
             }
         }
@@ -91,20 +92,22 @@ public class Solution3 {
 
     /**
      * 一维优化,代码见 硬币.背包最大价值问题.完全背包问题.Solution4
+     *
      * @param num
      * @param dp
      * @param weight_Of_Bag
      * @param v
      * @param w
+     *
      * @url
      */
-    private void Solution3(int num,int dp[],int weight_Of_Bag,int v[],int w[]){
-        for (int i=1;i<=num;i++) { //待装入的物品
+    private void Solution3(int num, int dp[], int weight_Of_Bag, int v[], int w[]) {
+        for (int i = 1; i <= num; i++) { //待装入的物品
             //for (int j = 1; j <= weight_Of_Bag; j++) {  //剩余容量
 //                dp[i][j] = dp[i - 1][j];
 //                if(w[i]<=j)
 //                    dp[i][j] = Math.max(dp[i][j], dp[i][j - w[i]] + v[i]);
-                //删去第一维
+            //删去第一维
 //                dp[j] = dp[j]; //无意义
 //                if(w[i]<=j) //让内层循环从w[i]开始
 //                    dp[j] = Math.max(dp[j], dp[j - w[i]] + v[i]);

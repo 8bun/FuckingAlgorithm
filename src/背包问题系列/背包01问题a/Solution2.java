@@ -3,36 +3,35 @@ package 背包问题系列.背包01问题a;
 import java.util.Scanner;
 
 /**
- * @description：
- * 01背包问题的一维dp
+ * @description： 01背包问题的一维dp
  * @url： 分析思路来源：https://blog.csdn.net/yandaoqiusheng/article/details/84929357
  * https://www.luogu.com.cn/blog/RPdreamer/post-01-bei-bao-yu-wan-quan-bei-bao-di-mei-ju-shun-xu-di-fou-tong-chu
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/4/6 13:36
  * @level：
  */
 public class Solution2 {
     public static void main(String[] args) {
 
-        Scanner scanner=new Scanner(System.in);
-        int num=scanner.nextInt(); //物品种类
-        int weight_Of_Bag=scanner.nextInt(); //背包容量
-        int[] w=new int[num+1];  //物品重量
-        int[] v=new int[num+1];  //物品价值
-        for (int i=1;i<=num;i++){
-            w[i]=scanner.nextInt();
-            v[i]=scanner.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt(); //物品种类
+        int weight_Of_Bag = scanner.nextInt(); //背包容量
+        int[] w = new int[num + 1];  //物品重量
+        int[] v = new int[num + 1];  //物品价值
+        for (int i = 1; i <= num; i++) {
+            w[i] = scanner.nextInt();
+            v[i] = scanner.nextInt();
         }
 
-        int dp[]=new int[weight_Of_Bag+1];
+        int dp[] = new int[weight_Of_Bag + 1];
 
-        for (int i=0;i<=weight_Of_Bag;i++){
-            dp[i]=0;  //组成容量i的最大价值初始化为0(没有选择任何物体)
+        for (int i = 0; i <= weight_Of_Bag; i++) {
+            dp[i] = 0;  //组成容量i的最大价值初始化为0(没有选择任何物体)
         }
 
         //填表
-        for (int i=1;i<=num;i++){ //待装入的物品
+        for (int i = 1; i <= num; i++) { //待装入的物品
             //经过每一次的i循环，dp[j](j的范围如下)都是被上次i循环进行更新的。
             //如果现在经历的是第i次循环，那么这次的 dp[j]=Math.max(dp[j],dp[j-w[i]]+v[i]);
             //这条语句还没执行前，所有的dp[j]值都是第i-1次循环的结果。
@@ -61,7 +60,7 @@ public class Solution2 {
             //那么该第1次j执行过后，dp[20]的值就是第i次循环后的结果了，在第2次j执行前，因为j是递减的嫲，
             //假设此时计算dp[19]=max(dp[19],dp[13]+1)，此时dp[19]的值就是第i次循环后的结果了，
             //所以其实在这种情况下，第i次的循环内任何j不会出现①②条件不满足的情况。分析完毕
-            for (int j=weight_Of_Bag;j>=w[i];j--){  //倒序，模拟多个背包，每次保证w[i]可以放入容量j的背包
+            for (int j = weight_Of_Bag; j >= w[i]; j--) {  //倒序，模拟多个背包，每次保证w[i]可以放入容量j的背包
                 //如果放不下
                 //原版，可优化
 //                if(w[i]>j){//放到for条件上
@@ -69,7 +68,7 @@ public class Solution2 {
 //                }else {
 //                    dp[j]=Math.max(dp[j],dp[j-w[i]]+v[i]);
 //                }
-                dp[j]=Math.max(dp[j],dp[j-w[i]]+v[i]);
+                dp[j] = Math.max(dp[j], dp[j - w[i]] + v[i]);
             }
         }
         System.out.println(dp[weight_Of_Bag]);

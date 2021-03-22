@@ -1,9 +1,11 @@
-package DP系列.概率型DP.新21点;import java.util.Scanner;
+package DP系列.概率型DP.新21点;
+
+import java.util.Scanner;
+
 /**
- * @Author: Jack
- * @Date: 2020/6/18 00:14
- * @Description:
- * 在[1,w]内进行抽牌（每次放回），当抽的累积和sum>=K时，就获胜，停止抽取数字
+ * @author cwq
+ * @since 2020/6/18 00:14
+ * @Description: 在[1, w]内进行抽牌（每次放回），当抽的累积和sum>=K时，就获胜，停止抽取数字
  * 给定一个整数N，N>=K，求抽的累积和sum<=N 的概率。
  * 结合N>=K，那么sum<=N时，也就是sum<=N>=K，那么sum>=K，也就是获胜了
  * 所以题目要求的概率为P(sum<=N|sum>=K)即在sum>=K的情况下求sum<=N的概率
@@ -59,7 +61,7 @@ package DP系列.概率型DP.新21点;import java.util.Scanner;
  * 先拿到 16 点的概率 (P[16]) 再拿到一个 4 点的概率 (1/W)，先拿到 15 点的概率 (P[15]) 再拿到一个 5 点的概率 (1/W)，...，
  * 先拿到 10 点的概率 (P[10]) 再拿到一个 10 点的概率 (1/W)，那么统统加起来就是：
  * P[20] = 1/W * (P[16] + P[15] + P[14] + ... + P[10]) = 1/W * (sum[16] - sum[9]) = 1/W * (sum[K-1]-sum[20-W-1])
- *
+ * <p>
  * 总结一下：
  * P[i] = 1/W * sum[i-1]（i <=K && i <= W）
  * p[i] = 1/W * sum[K-1]（i > K  && i <= W）
@@ -69,11 +71,15 @@ package DP系列.概率型DP.新21点;import java.util.Scanner;
  * 我们每次使用 i-1 和 K-1 中的较小值来算 P[i] 即可，这样就完美把 K 融到了 W 的分类情况中了。
  * 例如i<=K，那么i-1<=K-1，所以结果取较小值i-1
  * 当 sums 数组计算完成之后，我们就直接按照上面的条件概率公式来算就行了。
- * @Url: https://leetcode-cn.com/problems/new-21-game/
- * @限制: 
- * @Level: 
+ * @link https://leetcode-cn.com/problems/new-21-game/
+ * @限制:
+ * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
 
     public double new21Game(int N, int K, int W) {
         if (K == 0 || N >= K - 1 + W) //还没开始抽就停止了或者最后两轮，倒数第二轮累积和为K-1, 最后一轮抽最大数W还没有超过N
@@ -90,8 +96,5 @@ public class Solution {
          * P(sum>=K) = P(K)+...P(+∞) = P(K) + ... + P(K+W-1)
          */
         return (sum[N] - sum[K - 1]) / (sum[K + W - 1] - sum[K - 1]);
-    }
-    public static void main(String[] args){
-         Scanner scanner=new Scanner(System.in);
     }
 }

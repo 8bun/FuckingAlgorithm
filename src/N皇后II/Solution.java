@@ -6,45 +6,52 @@ import java.util.*;
  * @description：
  * @url：https://leetcode-cn.com/problems/n-queens-ii/
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/4/10 10:15
  * @level：
  */
 public class Solution {
     //根据已经被标记为Q的位置的特征进行记录
     private Set<Integer> colSet = new HashSet<>();
-    private  Set<Integer> subSet = new HashSet<>();
-    private  Set<Integer> addSet = new HashSet<>();
+    private Set<Integer> subSet = new HashSet<>();
+    private Set<Integer> addSet = new HashSet<>();
 
-    private  List<List<String>> res=new LinkedList<>();
+    private List<List<String>> res = new LinkedList<>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        System.out.println(new Solution().totalNQueens(4));
+    }
 
     public int totalNQueens(int n) {
         if (n <= 0)
             return 0;
-        char[][] board=new char[n][n];
-        for (char[] chars:board)
-            Arrays.fill(chars,'.');
-        backtrace(board,0);
+        char[][] board = new char[n][n];
+        for (char[] chars : board)
+            Arrays.fill(chars, '.');
+        backtrace(board, 0);
         return res.size();
     }
-    private void backtrace(char[][] board,int x){
-        if(x==board.length){
+
+    private void backtrace(char[][] board, int x) {
+        if (x == board.length) {
             res.add(charToString(board));
             return;
         }
         //找行x的哪一列可以放置皇后
-        for (int i=0;i<board.length;i++){
-            if (!isValid(x,i))
+        for (int i = 0; i < board.length; i++) {
+            if (! isValid(x, i))
                 continue;
-            board[x][i]='Q';
+            board[x][i] = 'Q';
             colSet.add(i);
-            addSet.add(x+i);
-            subSet.add(x-i);
-            backtrace(board,x+1);
-            board[x][i]='.';
+            addSet.add(x + i);
+            subSet.add(x - i);
+            backtrace(board, x + 1);
+            board[x][i] = '.';
             colSet.remove(i);
-            addSet.remove(x+i);
-            subSet.remove(x-i);
+            addSet.remove(x + i);
+            subSet.remove(x - i);
         }
     }
 
@@ -79,13 +86,7 @@ public class Solution {
 //        }
 //        return true;
 //    }
-    private  boolean isValid(int x, int y){
-        return !colSet.contains(y)&&!addSet.contains(x+y)&&!subSet.contains(x-y);
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner=new Scanner(System.in);
-        int n=scanner.nextInt();
-        System.out.println(new Solution().totalNQueens(4));
+    private boolean isValid(int x, int y) {
+        return ! colSet.contains(y) && ! addSet.contains(x + y) && ! subSet.contains(x - y);
     }
 }

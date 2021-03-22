@@ -1,13 +1,12 @@
 package Java基础.并发原子类练习;
 
 /**
- * @description：AtomicStampedReference解决ABA问题，
- * ABA问题的解决办法就是使用版本号，在变量前面追加版本号，每次变量更新时把版本号加1
+ * @description：AtomicStampedReference解决ABA问题， ABA问题的解决办法就是使用版本号，在变量前面追加版本号，每次变量更新时把版本号加1
  * 这个类的compareAndSet方法的作用首先检查当前引用是否等于预期引用，并且检查当前标志是否等于预期标志，
  * 如果都相等，则以原子方式将该引用和标志的值设为给定的更新值。
-* @url：
+ * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/24 21:40
  * @level：
  */

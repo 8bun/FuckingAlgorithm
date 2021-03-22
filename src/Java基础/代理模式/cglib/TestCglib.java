@@ -9,7 +9,7 @@ import net.sf.cglib.proxy.Enhancer;
  * @description：
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/17 13:09
  * @level：
  */
@@ -18,13 +18,13 @@ public class TestCglib {
     public static void main(String[] args) {
 
         //代理User类执行方法
-        Enhancer enhancer=new Enhancer();
+        Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(User.class); //装载被代理类
 
-        Callback callback=new MyCallBackMethod();
+        Callback callback = new MyCallBackMethod();
         enhancer.setCallback(callback);
 
-        User user=(User)enhancer.create();
+        User user = (User) enhancer.create();
         user.login();
     }
 }

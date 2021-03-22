@@ -22,12 +22,13 @@ import java.util.Arrays;
  * 更详细的查看：https://blog.csdn.net/csdnqixiaoxin/article/details/89429528?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
  * @url： https://zhuanlan.zhihu.com/p/93129029
  * @限制： 要求时间最快时
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/24 22:05
  * @level：
  */
+
 /**
- * 快速排序最坏的情bai况是初始序列已经有序，第1趟排序经过n-1次比较后，将第1个元素仍然定在原来的位置上，
+ * 快速排序最坏的情况是初始序列已经有序，第1趟排序经过n-1次比较后，将第1个元素仍然定在原来的位置上，
  * 并得到一个长度为n-1的子序列；
  * 第2趟排序经过n-2次比较后，将第2个元素确定在它原来的位置上，又得到一个长度为n-2的子序列；以此类推，最终总的比较次数：
  * C(n) = (n-1) + (n-2) + ... + 1 = n(n-1)/2
@@ -40,7 +41,6 @@ public class Main {
         QuickSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
-
     static void QuickSort1(int arr[], int start, int end) {
         int l = start, r = end;
         if (l < r) {

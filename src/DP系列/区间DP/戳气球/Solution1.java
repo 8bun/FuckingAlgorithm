@@ -1,14 +1,11 @@
 package DP系列.区间DP.戳气球;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/12 20:00
- * @Description:  DP解法
+ * @author cwq
+ * @since 2020/5/12 20:00
+ * @Description: DP解法
  * 注意这里有个子问题依赖的陷阱
  * 假设气球区间为：[3,1,5,8]，我们要求这个区间所能获得硬币的最大数量x
  * 那么假设我们先戳破1，那么x=[3]+3*1*5+[5,8]
@@ -19,62 +16,45 @@ import java.util.Scanner;
  * 这里应该采用逆向思维的方法，首先产生这种依赖性问题的根源是我们先选择了1并戳破了它
  * 那么就导致了[3]和[5,8]进行了靠拢产生了边界依赖（3依赖5）（可以想象火车中间去掉某一个车厢后，左右车厢的合拢）
  * 那么我们不要先戳破它（1）是不是可以解决问题？
- * 我们先求出[3,1]这个区间（不要戳破1，因为它对于右区间有用）所能获得硬币的最大数量
- * 然后求出[1,5,8]这个区间（不要戳破1，因为它对于左区间有用）所能获得硬币的最大数量
- * 这里虽然我们先求出了左区间，再求右区间，但是实际上这个顺序可以改变的
- * 我们可以先求右再求左，那么由于这个顺序是不固定的，也就是我在求左还是求右的时候，
- * 是不知道另一边是否计算好了的（不用再依赖1了），所以我们选择在两边都算完后才戳破1才是最好的方法
- * （对于每个区间我们又再次选择最后爆哪个球进行递归求得最大数量）
- * 换种方式来说，我们选择气球1，然后优先选择点爆掉左边和右边的气球之后，再最后点爆这个气球1，这时可以看出
- * 左右两个子区间是独立的，它们只和1这个气球有关联
- * 最后，我们选择3或5或8作为最后才戳破分别计算硬币最大值，然后取他们的最大值即可
- * 由此写出状态转移方程：
- * 设dp[i][j]表示[i,j]这个区间能获得的最大硬币
- * 那么dp[i][j]=max(dp[i][j],dp[i][k]+dp[k][j]+nums[i]*nums[k]*nums[j]);，其中k范围是[i+1,j-1]
- *
- * @Url:
+ * 1、在开区间(i,j)之间戳气球k，先将(i,k)和(k,j)之间的气球戳破，再将k这个气球戳破；
+ * 2、在这期间，每一个状态即为不同的开区间边界，那么每一次的状态转移都是一个独立的子问题；
+ * 3、所以改变输入的数组，将其头尾各添加一个元素1变为point[0...numsSize+1]，
+ * 就将原问题改变为在开区间(0，n+1)之间戳破所有气球所得的最高分即为答案。
+ * 4、步骤
+ * dp数组含义：dp[i][j]即为戳破开区间(i,j)内的所有气球所得的最高分；
+ * 状态：即每一次开区间的边界i和j。
+ * 状态转移方程：dp[i][j] = dp[i][k] + dp[k][j] + points[i] · points[k] · points[j];
+ * @link https://leetcode-cn.com/problems/burst-balloons/solution/312-chuo-qi-qiu-by-dyzahng-khsp/
  * @限制:
  * @Level:
  */
 public class Solution1 {
 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] nums = {3, 1, 5, 8};
+        int res = new Solution1().maxCoins(nums);
+        System.out.println(res);
+    }
+
     public int maxCoins(int[] nums) {
         //给定四个球分别为[3,1,5,8],其实可以看做数组[1,3,1,5,8,1];
-        int len = nums.length+2;
-        int[] newNums=new int[len];
-        newNums[0]=1;
-        newNums[len-1]=1;
-        System.arraycopy(nums,0,newNums,1,len-2);
-
-        int[][] dp = new int[len][len];
-        /**
-         * 枚举区间的惯用手法
-         * 先枚举区间长度 l ,然后枚举起点i， 重点j自然而然就定下来得了 j = i + l
-         *
-         * 时间复杂度O(n^3): 三层循环
-         * 空间复杂度O(n^2): dp[i][j]数组的大小是(n+2)∗(n+2)
-         *
-         * 超时与否取决于最终的计算量，时间复杂度只是提供一个参考，因为相同复杂度的算法常数可能差别非常大。
-         * 评测器的时限一般是1秒，在C++中可容许的计算次数大约是 10^8，此题中算法复杂度是 O(n^3)
-         * 但三重循环的次数大约是 n^3/6，由于 n≤500，所以计算量大约是 2×10^7，1秒内可以出解。
-         */
-        for (int l = 2; l < len; l++){ //l为[i,j]区间的长度[2,len-1]
-            //区间起点下标i,为了保证[i,j]区间的长度至少为l，那么i（下标）最多是len-l-1,例如len=6（最大下标为5）,区间长度为3,那么i的下标最多为2
-            for (int i = 0; i <= len-l-1; i++){
-                int j = i + l; //右区间的起点
+        int len = nums.length + 2;
+        int[] newNums = new int[len];
+        newNums[0] = 1;
+        newNums[len - 1] = 1;
+        System.arraycopy(nums, 0, newNums, 1, len - 2);
+        int[][] dp = new int[len + 2][len + 2];
+        /* 方向：从下往上、从左往右 */
+        for (int i = nums.length; i >= 0; i--) {
+            for (int j = i + 1; j < nums.length + 2; j++) {
                 for (int k = i + 1; k < j; k++) {
-                    //最后爆newNums[k]时,newNums[i]为1，newNums[j]为1
-                    dp[i][j] = Math.max(dp[i][j], dp[i][k] + dp[k][j] + newNums[i] * newNums[k] * newNums[j]);
-                    //System.out.println(i+":"+newNums[i]+" ,"+k+":"+newNums[k]+" ,"+j+":"+newNums[j]);
+                    int res = dp[i][k] + dp[k][j] + newNums[i] * newNums[k] * newNums[j];
+                    dp[i][j] = Math.max(dp[i][j], res);
                 }
             }
         }
-        return dp[0][len-1];
-    }
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int[] nums={3,1,5,8};
-        int res = new Solution1().maxCoins(nums);
-        System.out.println(res);
+        /* 结果就为开区间(0, len + 1)之间的dp值 */
+        return dp[0][nums.length + 1];
     }
 }

@@ -11,11 +11,11 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class FooBar {
 
-    private int n;
     private final AtomicInteger flag = new AtomicInteger(0);
     private final ReentrantLock lock = new ReentrantLock();
     private final Condition fooCon = lock.newCondition();
     private final Condition barCon = lock.newCondition();
+    private int n;
 
     public FooBar(int n) {
         this.n = n;

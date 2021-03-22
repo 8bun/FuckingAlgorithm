@@ -1,4 +1,4 @@
-package 基本问题.equals_hashCode;
+package Java基础.equals_hashCode;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -7,32 +7,18 @@ import java.util.Objects;
  * @description：
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/4/13 23:20
  * @level：
  */
 public class Student2 {
     private String name;
-    private  int age;
-    private  String QQ;
-
-    @Override
-    public boolean equals(Object o) {
-        if(this==o) return true;  //当前对象就是O
-        if (o == null || getClass() != o.getClass()) return false;
-        Student2 student = (Student2) o;
-        return age == student.age &&
-                Objects.equals(name, student.name) &&
-                Objects.equals(QQ, student.QQ);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age, QQ); //调用官方的hash方法
-    }
+    private int age;
+    private String QQ;
 
     /**
      * 用典型HashMap集合来存储对象，我们重写了HashCode
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -47,11 +33,26 @@ public class Student2 {
         System.out.println(student.hashCode());            //29791，调用自研hashCode
         System.out.println(student2.hashCode());           //29791
         HashMap<Student2, String> map = new HashMap<>();
-        map.put(student,"123");
-        map.put(student2,"456");
+        map.put(student, "123");
+        map.put(student2, "456");
         System.out.println(map.get(student));  //456（因为equals相等了，后面把值给更新了）
         System.out.println(map.get(student2));  //456
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;  //当前对象就是O
+        if (o == null || getClass() != o.getClass()) return false;
+        Student2 student = (Student2) o;
+        return age == student.age &&
+                Objects.equals(name, student.name) &&
+                Objects.equals(QQ, student.QQ);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, QQ); //调用官方的hash方法
     }
 
 }

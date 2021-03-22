@@ -3,8 +3,7 @@ package Java基础.排序算法.冒泡排序;
 import java.util.Arrays;
 
 /**
- * @description：
- * 将序列中所有元素两两比较，将最大的放在最后面。
+ * @description： 将序列中所有元素两两比较，将最大的放在最后面。
  * 将剩余序列中所有元素两两比较，将最大的放在最后面。
  * 重复第二步，直到只剩下一个数。
  * 伪代码：
@@ -24,24 +23,25 @@ import java.util.Arrays;
  * 冒泡排序总的平均时间复杂度为：O(n2)
  * @url： https://www.cnblogs.com/bigdata-stone/p/10464243.html
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/24 22:05
  * @level：
  */
 public class Main {
     public static void main(String[] args) {
-        int []arr = {9,13,7,1,68,4,3,2,1};
+        int[] arr = {9, 13, 7, 1, 68, 4, 3, 2, 1};
         bubbleSort(arr);
     }
-    public static void bubbleSort(int[] a){
-        int len=a.length;
+
+    public static void bubbleSort(int[] a) {
+        int len = a.length;
         int temp;
-        for(int i=0;i<len-1;i++) { //一趟排序的编号，总共需要len-1趟，可以想象只有2个元素的样子，只需要1趟
+        for (int i = 0; i < len - 1; i++) { //一趟排序的编号，总共需要len-1趟，可以想象只有2个元素的样子，只需要1趟
             for (int j = 0; j < len - 1 - i; j++) {  //该趟排序的需要与下一个元素进行比较的下标范围
-                if(a[j]>a[j+1]){
-                    temp=a[j];
-                    a[j]=a[j+1];
-                    a[j+1]=temp;
+                if (a[j] > a[j + 1]) {
+                    temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
                 }
             }
         }

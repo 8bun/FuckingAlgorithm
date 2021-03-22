@@ -3,14 +3,12 @@ package DP系列.数位DP.萌数;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/27 20:56
- * @Description:
- * 找出[l,r]中 “存在长度至少为2的回文子串”的数的个数
+ * @author cwq
+ * @since 2020/5/27 20:56
+ * @Description: 找出[l, r]中 “存在长度至少为2的回文子串”的数的个数
  * 例如101是萌的，因为101本身就是一个回文数；110是萌的，因为包含回文子串11；但是102不是萌的，1201也不是萌的。
- * @Url: https://www.luogu.com.cn/problem/P3413
- * @限制:
- * 记n为r在10进制下的位数, 对于全部的数据，n <= 1000，l < r
+ * @link https://www.luogu.com.cn/problem/P3413
+ * @限制: 记n为r在10进制下的位数, 对于全部的数据，n <= 1000，l < r
  * @Level:
  */
 public class Main {
@@ -24,16 +22,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String l = scanner.next();
         String r = scanner.next();
-        long s1=l.length();
-        long s2=r.length();
+        long s1 = l.length();
+        long s2 = r.length();
         long numl = 0;
         //将l从字符串形式转化为MOD后的long形式
-        for(int i = 0;i < s1; i++) {
+        for (int i = 0; i < s1; i++) {
             numl = (numl * 10 % MOD + (l.charAt(i) - '0')) % MOD;
         }
         //将r从字符串形式转化为MOD后的long形式
         long numr = 0;
-        for(int i = 0; i < s2; i++) {
+        for (int i = 0; i < s2; i++) {
             numr = (numr * 10 % MOD + (r.charAt(i) - '0')) % MOD;
         }
         //最终结果应该是：numr-(numl - 1)-[solve(r)-solve(numl-1的字符串形式)]
@@ -47,7 +45,7 @@ public class Main {
         // 而取模的结果应该与b的符号保持一致。
         //为了防止出现负数，这里用到了：
         //((a%b)+b)%b ,即将一个负数取模后转换为正数(同余定理)
-        System.out.println(((numr - numl - (solve(r) - solve(l)) + check(l))% MOD + MOD) % MOD);
+        System.out.println(((numr - numl - (solve(r) - solve(l)) + check(l)) % MOD + MOD) % MOD);
     }
 
     private static long check(String x) {
@@ -66,8 +64,9 @@ public class Main {
             digit[len - i] = l.charAt(i) - '0';
         }
 
-        return dfs(len,-1, -1, true, true);
+        return dfs(len, - 1, - 1, true, true);
     }
+
     /**
      * 分析可得，所有的回文数都必定可以简化为 aa 和 aba 中的一种
      * 也就是说，发现当一个数的所有位都与其前两位的数字都不相同时，这个数就不含回文串.
@@ -82,10 +81,11 @@ public class Main {
      * 所以它们总数是一样的
      * 我们发现当前位都是3,并且curLimit==false,ifZero=false，可对这种状态下的dp进行非萌数个数的记忆
      */
-    private static long dfs(int curPos, int pre2, int pre1, boolean curLimit, boolean ifZero){
+    private static long dfs(int curPos, int pre2, int pre1, boolean curLimit, boolean ifZero) {
         if (curPos == 0) return 1;
 
-        if (pre1 != -1 && pre2 != -1 && !curLimit && !ifZero && dp[curPos][pre2][pre1] != 0) return dp[curPos][pre2][pre1];
+        if (pre1 != - 1 && pre2 != - 1 && ! curLimit && ! ifZero && dp[curPos][pre2][pre1] != 0)
+            return dp[curPos][pre2][pre1];
 
         long up_bound = curLimit ? digit[curPos] : 9;
         long cnt = 0;
@@ -93,11 +93,11 @@ public class Main {
         for (int curSelect = 0; curSelect <= up_bound; curSelect++) {
             if (curSelect == pre1 || curSelect == pre2) continue; //剪去萌分支
             if (ifZero && curSelect == 0)
-                cnt = (cnt + dfs(curPos - 1, -1, -1, false, true)) % MOD;
+                cnt = (cnt + dfs(curPos - 1, - 1, - 1, false, true)) % MOD;
             else
-                cnt = (cnt + dfs(curPos - 1, pre1, curSelect, curLimit && curSelect == up_bound,false))%MOD;
+                cnt = (cnt + dfs(curPos - 1, pre1, curSelect, curLimit && curSelect == up_bound, false)) % MOD;
         }
-        if (pre1 != -1 && pre2 != -1 && !curLimit && !ifZero)
+        if (pre1 != - 1 && pre2 != - 1 && ! curLimit && ! ifZero)
             dp[curPos][pre2][pre1] = cnt;
         return cnt;
     }

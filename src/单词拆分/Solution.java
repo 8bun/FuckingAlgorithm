@@ -3,14 +3,13 @@ package 单词拆分;
 import java.util.*;
 
 /**
- * @Author: Jack
- * @Date: 2020/4/26 16:59
- * @Description:
- * 输入: s = "applepenapple", wordDict = ["apple", "pen"]
+ * @author cwq
+ * @since 2020/4/26 16:59
+ * @Description: 输入: s = "applepenapple", wordDict = ["apple", "pen"]
  * 输出: true
  * 解释: 返回 true 因为 "applepenapple" 可以被拆分成 "apple pen apple"。
  *      注意你可以重复使用字典中的单词。
- * @Url: https://leetcode-cn.com/problems/word-break/
+ * @link https://leetcode-cn.com/problems/word-break/
  * @限制:
  * @Level:
  */
@@ -20,15 +19,28 @@ public class Solution {
      * 记忆化递归写法，为了找到解，我们可以检查字典单词中每一个单词的可能前缀，如果在字典中出现过，
      * 那么去掉这个前缀后剩余部分回归调用。同时，如果某次函数调用中发现整个字符串都已经被拆分且在字典中出现过了，
      * 函数就返回 true
+     *
      * @param s
      * @param wordDict
      * @return
      */
-    private HashMap<String,Boolean> map=new HashMap<>();
+    private HashMap<String, Boolean> map = new HashMap<>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<String> wordList = new ArrayList<>();
+        String[] words = {"a", "b", "ab", "cd", "cdc", "c"};
+        for (String word : words) {
+            wordList.add(word);
+        }
+        boolean res = new Solution().wordBreak2("ababcdc", wordList);
+        System.out.println(res);
+    }
+
     public boolean wordBreak(String s, List<String> wordDict) {
         if ("".equals(s))
             return true;
-        boolean res=false;
+        boolean res = false;
         if (map.containsKey(s))
             return false;
         //可截取的长度
@@ -41,10 +53,10 @@ public class Solution {
         //由于这里是走不通的情况大概率大于走得通的情况，所以map来记录失败的字符串还是更优的
         for (int len = 1; len <= s.length(); len++) {
             String prefix = s.substring(0, len); //截取前缀
-            if (wordDict.contains(prefix)){
-                res = res || wordBreak(s.substring(len),wordDict);
-                if (!res)
-                    map.put(s.substring(len),false);
+            if (wordDict.contains(prefix)) {
+                res = res || wordBreak(s.substring(len), wordDict);
+                if (! res)
+                    map.put(s.substring(len), false);
             }
         }
         return res;
@@ -53,19 +65,21 @@ public class Solution {
     /**
      * BFS做法
      * 树存储还没有拆分的字符串的起始下标
+     *
      * @param s
      * @param wordDict
+     *
      * @return
      */
     public boolean wordBreak1(String s, List<String> wordDict) {
-        Queue<Integer> queueIndex=new LinkedList<>();
-        int end=s.length();
-        Boolean[] visited=new Boolean[end];
-        Arrays.fill(visited,false);
+        Queue<Integer> queueIndex = new LinkedList<>();
+        int end = s.length();
+        Boolean[] visited = new Boolean[end];
+        Arrays.fill(visited, false);
         queueIndex.add(0);
-        while (!queueIndex.isEmpty()){
-            int startIndex=queueIndex.poll();
-            if (!visited[startIndex]) {
+        while (! queueIndex.isEmpty()) {
+            int startIndex = queueIndex.poll();
+            if (! visited[startIndex]) {
                 //开始遍历还没有拆分的字符串
                 for (int i = startIndex + 1; i <= end; i++) {
                     String prefix = s.substring(startIndex, i); //截取前缀
@@ -77,7 +91,7 @@ public class Solution {
                     }
                 }
             }
-            visited[startIndex]=true;
+            visited[startIndex] = true;
         }
         return false;
     }
@@ -97,13 +111,15 @@ public class Solution {
      * 如果前半部分是可以成功拆分的，也就是dp[l]=true，并且后半部分在字典内，那么dp[i]=true
      * 同样的，也可以反过来分析
      * 具体分析：https://leetcode-cn.com/problems/word-break/solution/dong-tai-gui-hua-python-dai-ma-by-liweiwei1419-2/
+     *
      * @param s
      * @param wordDict
+     *
      * @return
      */
     public boolean wordBreak2(String s, List<String> wordDict) {
-        int len=s.length();
-        boolean[] dp=new boolean[len];
+        int len = s.length();
+        boolean[] dp = new boolean[len];
 
 //        for (int i=0;i<len;i++){ //dp[i]表示s[0]...s[i]能否成功拆分
 //            //s[0]...s[i]如果不进行拆分，也就是组成的字符串就存在于dict里面，那么dp[i]=true
@@ -118,31 +134,23 @@ public class Solution {
 //                }
 //            }
 //        }
-        for (int i=len-1;i>=0;i--){ //dp[i]表示s[i]...s[len-1]能否成功被拆分
+        for (int i = len - 1; i >= 0; i--) { //dp[i]表示s[i]...s[len-1]能否成功被拆分
             //s[i]...s[len-1]如果不进行拆分，也就是组成的字符串就存在于dict里面，那么dp[i]=true
-            if (wordDict.contains(s.substring(i,len))){
-                dp[i]=true;continue;
+            if (wordDict.contains(s.substring(i, len))) {
+                dp[i] = true;
+                continue;
             }
             //如果对s[i]...s[len-1]进行拆分，并且分为s[i]...s[l], s[l+1]...s[len-1]两部分,l的范围是[i,len-2]
             //根据前面的，这次反过来应该是取前缀部分，因为后半部分的dp是先求的
-            for (int l=i;l<len-1;l++){
-                String prefix=s.substring(i,l+1);//前半部分
-                if (dp[l+1]&&wordDict.contains(prefix)){
-                    dp[i]=true;break; //满足条件之后跳出循环即可，因为只需要找到一种方案满足
+            for (int l = i; l < len - 1; l++) {
+                String prefix = s.substring(i, l + 1);//前半部分
+                if (dp[l + 1] && wordDict.contains(prefix)) {
+                    dp[i] = true;
+                    break; //满足条件之后跳出循环即可，因为只需要找到一种方案满足
                 }
             }
         }
         return dp[0];
-    }
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        List<String> wordList=new ArrayList<>();
-        String[] words={"a","b","ab","cd","cdc","c"};
-        for (String word:words){
-            wordList.add(word);
-        }
-        boolean res=new Solution().wordBreak2("ababcdc",wordList);
-        System.out.println(res);
     }
 
 }

@@ -3,14 +3,21 @@ package DP系列.线性DP.其他经典问题.乘积最大的子数组;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/4/15 12:46
+ * @author cwq
+ * @since 2020/4/15 12:46
  * @Description:
- * @Url: https://leetcode-cn.com/problems/maximum-product-subarray/submissions/
+ * @link https://leetcode-cn.com/problems/maximum-product-subarray/submissions/
  * @限制:
  * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] nums = {2, 3, - 1, 4};
+        int res = new Solution().maxProduct(nums);
+        System.out.println(res);
+    }
 
     public int maxProduct(int[] nums) {
         int len = nums.length;
@@ -39,12 +46,5 @@ public class Solution {
             res = Math.max(res, maxV[i]);
         }
         return res;
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int[] nums = {2, 3, -1, 4};
-        int res = new Solution().maxProduct(nums);
-        System.out.println(res);
     }
 }

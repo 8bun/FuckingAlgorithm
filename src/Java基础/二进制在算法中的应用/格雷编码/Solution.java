@@ -3,9 +3,10 @@ package Java基础.二进制在算法中的应用.格雷编码;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 /**
- * @Author: Jack
- * @Date: 2020/6/11 09:38
+ * @author cwq
+ * @since 2020/6/11 09:38
  * @Description: 格雷编码生成过程
  * G(i) = i ^ (i/2)
  * 如 n = 3:
@@ -17,11 +18,15 @@ import java.util.Scanner;
  * G(5) = 5 ^ 2 = 101 ^ 010 = 111
  * G(6) = 6 ^ 3 = 110 ^ 011 = 101
  * G(7) = 7 ^ 3 = 111 ^ 011 = 100
- * @Url:  https://leetcode-cn.com/problems/gray-code/
- * @限制: 
- * @Level: 
+ * @link https://leetcode-cn.com/problems/gray-code/
+ * @限制:
+ * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
 
     public List<Integer> grayCode(int n) {
         List<Integer> res = new ArrayList<>();
@@ -31,9 +36,5 @@ public class Solution {
             res.add(i ^ (i / 2));
         }
         return res;
-    }
-
-    public static void main(String[] args){
-         Scanner scanner=new Scanner(System.in);
     }
 }

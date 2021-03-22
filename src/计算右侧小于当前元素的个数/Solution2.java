@@ -1,16 +1,18 @@
 package 计算右侧小于当前元素的个数;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * @Author: Jack
- * @Date: 2020/7/11 14:07
+ * @author cwq
+ * @since 2020/7/11 14:07
  * @Description: 这里使用插入排序的思想，我们从尾部开始：
  * 1）从后往前依次取出数字去排序(因为这样做的话，第2步的时候已排序的数组内的所有元素就已经是新数后面的)
  * 2）使用二分查找找到新的数字排在已排序的数组的第几位，就是比几个数字大
  * 3）然后将这个数字插入到该位置
  * O(nlogn)~O(n^2)
- * @Url:
+ * @link
  * @限制:
  * @Level:
  */

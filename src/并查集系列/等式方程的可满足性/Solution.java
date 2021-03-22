@@ -3,12 +3,11 @@ package 并查集系列.等式方程的可满足性;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/8 21:42
+ * @author cwq
+ * @since 2020/5/8 21:42
  * @Description:
- * @Url: https://leetcode-cn.com/problems/satisfiability-of-equality-equations/
- * @限制:
- * 1 <= equations.length <= 500
+ * @link https://leetcode-cn.com/problems/satisfiability-of-equality-equations/
+ * @限制: 1 <= equations.length <= 500
  * equations[i].length == 4
  * equations[i][0] 和 equations[i][3] 是小写字母
  * equations[i][1] 要么是 '='，要么是 '!'
@@ -16,39 +15,8 @@ import java.util.Scanner;
  * @Level:
  */
 public class Solution {
-    private class UnionFind {
-        private int[] parent;
-
-        public UnionFind(int n) {
-            parent = new int[n];
-            for (int i = 0; i < n; i++) {
-                parent[i] = i;
-            }
-        }
-
-        public int find(int x) {
-            while (x != parent[x]) {
-                parent[x] = parent[parent[x]];
-                x = parent[x];
-            }
-            return x;
-        }
-
-        /**
-         * @param x
-         * @param y
-         * @return
-         */
-        public void union(int x, int y) {
-            int rootX = find(x);
-            int rootY = find(y);
-            if (rootX==rootY)return;
-            parent[rootX] = rootY;
-        }
-
-        public boolean isConnected(int x, int y) {
-            return find(x) == find(y);
-        }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
     }
 
     public boolean equationsPossible(String[] equations) {
@@ -78,7 +46,39 @@ public class Solution {
         return true;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    private class UnionFind {
+        private int[] parent;
+
+        public UnionFind(int n) {
+            parent = new int[n];
+            for (int i = 0; i < n; i++) {
+                parent[i] = i;
+            }
+        }
+
+        public int find(int x) {
+            while (x != parent[x]) {
+                parent[x] = parent[parent[x]];
+                x = parent[x];
+            }
+            return x;
+        }
+
+        /**
+         * @param x
+         * @param y
+         *
+         * @return
+         */
+        public void union(int x, int y) {
+            int rootX = find(x);
+            int rootY = find(y);
+            if (rootX == rootY) return;
+            parent[rootX] = rootY;
+        }
+
+        public boolean isConnected(int x, int y) {
+            return find(x) == find(y);
+        }
     }
 }

@@ -10,19 +10,19 @@ package Java基础.单例模式;
  * 饱汉模式，很饱不着急，延迟加载，啥时候用啥时候创建实例，存在线程安全问题
  * @url：
  * @限制：
- * @author：Jack
- * @createTime:  2020/3/14 12:08
+ * @author：cwq
+ * @createTime: 2020/3/14 12:08
  * @level：
  */
 public class Singleton2 {
-    
+
     private static Singleton2 singleton2;
 
-    private Singleton2(){}
+    private Singleton2() {}
 
-    public static Singleton2 getInstance(){
-        if(singleton2==null){
-            singleton2=new Singleton2();
+    public static Singleton2 getInstance() {
+        if (singleton2 == null) {
+            singleton2 = new Singleton2();
         }
         return singleton2;
     }

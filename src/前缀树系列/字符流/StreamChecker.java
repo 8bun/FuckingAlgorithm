@@ -1,13 +1,11 @@
 package 前缀树系列.字符流;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/1 14:04
- * @Description:
- * StreamChecker streamChecker = new StreamChecker(["cd","f","kl"]); // 初始化字典
+ * @author cwq
+ * @since 2020/5/1 14:04
+ * @Description: StreamChecker streamChecker = new StreamChecker(["cd","f","kl"]); // 初始化字典
  * streamChecker.query('a');          // 返回 false
  * streamChecker.query('b');          // 返回 false
  * streamChecker.query('c');          // 返回 false
@@ -36,68 +34,73 @@ import java.util.Scanner;
  * 例如到了abcd，倒着遍历字符串从d开始
  * 然后查找是否存在前缀d，不存在则直接返回false
  * 存在则判断isWord是否是单词，是的话返回true,不是的话继续找是否存在前缀dc...
- * @Url: https://leetcode-cn.com/problems/stream-of-characters/
+ * @link https://leetcode-cn.com/problems/stream-of-characters/
  * @限制:
  * @Level:
  */
 class TireNode {
     TireNode[] next;
     boolean isWord;
+
     public TireNode() {
         next = new TireNode[26];
-        isWord=false;
+        isWord = false;
     }
+
     public void insert(String[] words) {
-        for (String word:words) {
-            TireNode cur_root=this;
+        for (String word : words) {
+            TireNode cur_root = this;
             for (char ch : StreamChecker.reverse(word).toCharArray()) {
                 if (cur_root.next[ch - 'a'] == null) {
                     cur_root.next[ch - 'a'] = new TireNode();
                 }
                 cur_root = cur_root.next[ch - 'a'];
             }
-            cur_root.isWord=true;
+            cur_root.isWord = true;
         }
     }
-    public boolean startWith(String word){
-        TireNode root=this;
-        for (int i=word.length()-1;i>=0;i--){
-            if (root.next[word.charAt(i)-'a']!=null){
-                root=root.next[word.charAt(i)-'a'];
-                if (root.isWord)return true;
-            }
-            else return false;
+
+    public boolean startWith(String word) {
+        TireNode root = this;
+        for (int i = word.length() - 1; i >= 0; i--) {
+            if (root.next[word.charAt(i) - 'a'] != null) {
+                root = root.next[word.charAt(i) - 'a'];
+                if (root.isWord) return true;
+            } else return false;
         }
         return false;
     }
 }
+
 public class StreamChecker {
 
     private TireNode root;
     private String curStr;
+
     public StreamChecker(String[] words) {
-        root=new TireNode();
+        root = new TireNode();
         root.insert(words);
-        curStr="";
+        curStr = "";
     }
 
-    public boolean query(char letter) {
-        curStr+=letter;
-        return root.startWith(curStr);
-    }
-
-    public static String reverse(String str){
+    public static String reverse(String str) {
         StringBuilder builder = new StringBuilder("");
         return builder.append(str).reverse().toString();
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String[] words={"cd","f","kl"};
-        Character[] querys={'a','b','c','d','e','f','g','h','i','j','k','l'};
-        StreamChecker checker=new StreamChecker(words);
-        for (char query:querys){
-            boolean res=checker.query(query);
-            System.out.println(query+" "+res);
+        String[] words = {"cd", "f", "kl"};
+        Character[] querys = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'};
+        StreamChecker checker = new StreamChecker(words);
+        for (char query : querys) {
+            boolean res = checker.query(query);
+            System.out.println(query + " " + res);
         }
+    }
+
+    public boolean query(char letter) {
+        curStr += letter;
+        return root.startWith(curStr);
     }
 }

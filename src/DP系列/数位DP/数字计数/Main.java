@@ -3,15 +3,14 @@ package DP系列.数位DP.数字计数;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/27 15:37
- * @Description:
- * 给出一段区间[a,b]，统计这个区间内0-9出现的次数.
+ * @author cwq
+ * @since 2020/5/27 15:37
+ * @Description: 给出一段区间[a, b]，统计这个区间内0-9出现的次数.
  * 比如 10-19，1出现11次（10,11,12,13,14,15,16,17,18,19,其中11包括2个1)，其余数字各出现1次.
  * 从各位向前依次编号
  * 我们可以分别计算出数字0在[a,b]内出现的次数,可以分别计算出数字0在[0,a]和[0,b]中出现的次数，相减即可
  * 1出现的次数....
- * @Url: https://www.luogu.com.cn/problem/P2602
+ * @link https://www.luogu.com.cn/problem/P2602
  * @限制: 1≤a≤b≤10^12
  * @Level:
  */
@@ -31,17 +30,17 @@ public class Main {
             if (curDigit == 9)
                 System.out.println(s);
             else
-                System.out.print(s+" ");
+                System.out.print(s + " ");
         }
     }
 
     private static long solve(long num, int curDigit) {
         int k = 0; //记录有多少数位
         while (num != 0) {
-            digit[++k] = num % 10;
+            digit[++ k] = num % 10;
             num /= 10;
         }
-        return dfs(k, curDigit, 1, 1, 0) ;
+        return dfs(k, curDigit, 1, 1, 0);
     }
 
     private static long dfs(int curPos, int curDigit, int ifZero, int curLimit, int sum) {

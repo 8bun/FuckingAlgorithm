@@ -3,15 +3,13 @@ package DP系列.线性DP.骰子问题.掷骰子模拟;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/26 15:52
- * @Description:
- * 给你一个长度为6的数组和一个序列长度n, 序列由1-6组成，可重复。数组为对序列的约束，
+ * @author cwq
+ * @since 2020/5/26 15:52
+ * @Description: 给你一个长度为6的数组和一个序列长度n, 序列由1-6组成，可重复。数组为对序列的约束，
  * 数组下标i(从1开始)表示序列中的数字i不能连续出现rollMax[i]次。如果两个序列中至少存在一个元素不同，
  * 就认为这两个序列是不同的。求不同点数序列的数量
- * @Url: https://leetcode-cn.com/problems/dice-roll-simulation/
- * @限制:
- * 1 <= n <= 5000
+ * @link https://leetcode-cn.com/problems/dice-roll-simulation/
+ * @限制: 1 <= n <= 5000
  * rollMax.length == 6
  * 1 <= rollMax[i] <= 15
  * @Level:
@@ -19,9 +17,15 @@ import java.util.Scanner;
 public class Solution {
 
     private static final int MOD = 1_000_000_000 + 7;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
+
     /**
      * @param n
      * @param rollMax
+     *
      * @return
      */
     public int dieSimulator(int n, int[] rollMax) {
@@ -76,8 +80,5 @@ public class Solution {
             }
         }
         return res;
-    }
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
     }
 }

@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 import java.util.function.IntConsumer;
 
 /**
- * @Author： Jack
+ * @Author： cwq
  * @Date： 2020/09/28
  * @Description：
  * @Url： https://leetcode-cn.com/problems/print-zero-even-odd/
@@ -17,10 +17,11 @@ public class ZeroEvenOdd {
     private Semaphore zero = new Semaphore(1);
     private Semaphore even = new Semaphore(0);
     private Semaphore odd = new Semaphore(0);
+
     public ZeroEvenOdd(int n) {
         this.n = n;
     }
-    
+
     //for循环表示需要打印相应数字的个数
 
     // printNumber.accept(x) outputs "x", where x is an integer.
@@ -30,11 +31,10 @@ public class ZeroEvenOdd {
         for (int i = 1; i <= n; i++) {
             zero.acquire();
             printNumber.accept(0);
-            if(i % 2 == 0) {
+            if (i % 2 == 0) {
                 //要打印奇数了，让偶数线程让出许可
                 even.release();
-            }
-            else odd.release();
+            } else odd.release();
         }
     }
 
@@ -47,6 +47,7 @@ public class ZeroEvenOdd {
             zero.release(); //因为前面刚打印完0,zero刚acquire完，odd线程是在zero acquire之后被release的
         }
     }
+
     //仅打印奇数
     public void odd(IntConsumer printNumber) throws InterruptedException {
         for (int i = 1; i <= n; i += 2) {

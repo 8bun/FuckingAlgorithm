@@ -6,6 +6,7 @@ import java.util.concurrent.CyclicBarrier;
 /**
  * CyclicBarrier：一把门栓需要10把钥匙都集齐才能打开，也就是10个线程都调用await阻塞后才能冲破屏障，继续向下执行
  * 如果所有等待线程执行完毕，重置CyclicBarrier的状态后它可以被重用，而CountDownLatch则不可以
+ *
  * @author cwq
  * @since 2021/02/02
  */
@@ -20,6 +21,7 @@ public class FooBar5 {
      * 控制先后顺序
      */
     private volatile int flag = 0;
+
     public FooBar5(int n) {
         this.n = n;
     }

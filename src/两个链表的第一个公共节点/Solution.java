@@ -8,7 +8,7 @@ import java.util.Stack;
  * 通过栈从头到尾部依次压入链表所有元素，然后同时取出判断到第一次不同的前一个结点
  * @url： https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/
  * @限制：
- * @author：Jack
+ * @author： cwq
  * @createTime： 2020/3/6 14:58
  * @level： 简单
  */

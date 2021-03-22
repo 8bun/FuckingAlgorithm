@@ -1,16 +1,16 @@
 package 基本问题.并发原子类练习;
 
 /**
- * @description：
- * 创建了一个 Person 对象，然后把 Person 对象设置进 AtomicReference 对象中，
+ * @description： 创建了一个 Person 对象，然后把 Person 对象设置进 AtomicReference 对象中，
  * 然后调用 compareAndSet 方法，该方法就是通过 CAS 操作设置 ar。
  * 如果 ar 的值为 person 的话，则将其设置为 updatePerson
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/24 21:34
  * @level：
  */
+
 import java.util.concurrent.atomic.AtomicReference;
 
 public class AtomicReferenceTest {

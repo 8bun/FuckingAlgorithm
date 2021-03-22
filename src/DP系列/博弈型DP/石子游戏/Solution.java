@@ -3,8 +3,8 @@ package DP系列.博弈型DP.石子游戏;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/6/27 12:45
+ * @author cwq
+ * @since 2020/6/27 12:45
  * @Description: 偶数堆石子排成一行，每堆都有正整数颗石子 piles[i] 。
  * 游戏以谁手中的石子最多来决出胜负。石子的总数是奇数，所以没有平局。
  * 亚历克斯和李轮流进行，亚历克斯先开始。 每回合，玩家从行的开始或结束处取走整堆石头。
@@ -17,11 +17,18 @@ import java.util.Scanner;
  * -f(i+1,j)可以看成当前选手A比对手多了-f(i+1,j)这么多分，实际上是在前面+piles[i]基础上减去下一轮对手的得分,得到当前自己的得分
  * 所以当前选手相对于对手多出的石子为 piles[i]-f(i+1,j)。同理对于 piles[j]-f(i,j-1)) 。所以当前选手取两种情况中的最大值
  * 由状态方程可知，式子都要求我们在求dp[i][j]的时候知道它的下面和左边一个格子的值，所以我们从下到上，从左到右计算填表。
- * @Url: https://leetcode-cn.com/problems/stone-game/
+ * @link https://leetcode-cn.com/problems/stone-game/
  * @限制:
  * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] p = {1, 3, 7, 5};
+        boolean res = new Solution().stoneGame(p);
+        System.out.println(res);
+    }
 
     public boolean stoneGame(int[] piles) {
         if (piles == null || piles.length == 0) return false;
@@ -40,7 +47,9 @@ public class Solution {
 
     /**
      * 1维
+     *
      * @param piles
+     *
      * @return
      */
     public boolean stoneGame1(int[] piles) {
@@ -50,7 +59,7 @@ public class Solution {
 
         for (int i = len - 2; i >= 0; i--) { //还是区间起点的作用
             for (int j = i + 1; j < len; j++) {
-              //dp[i][j] = Math.max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]);
+                //dp[i][j] = Math.max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1]);
                 //dp[i+1][j]位于dp[i][j]的下一行的格子，dp[i][j - 1]位于左边
                 //由于采用从下到上，从左到右，那么下的先，左边的是dp[i][j]的"当前"状态
                 //下一行的是dp[i][j]的前一个状态
@@ -64,11 +73,5 @@ public class Solution {
             }
         }
         return dp[len - 1] > 0;
-    }
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int[] p = {1,3,7,5};
-        boolean res = new Solution().stoneGame(p);
-        System.out.println(res);
     }
 }

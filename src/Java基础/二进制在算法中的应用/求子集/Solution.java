@@ -18,12 +18,22 @@ import java.util.List;
  * 思路来源https://blog.csdn.net/gh6267/article/details/88116764?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-4&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-4
  * @url： https://leetcode-cn.com/problems/subsets/
  * @限制： 数组元素不重复
- * @author：Jack
- * @createTime：
- * 2020/4/10 17:30
+ * @author：cwq
+ * @createTime： 2020/4/10 17:30
  * @level：
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        int[] num = {1, 2, 2};
+        List<List<Integer>> res = new Solution().subsets(num);
+        for (List<Integer> list : res) {
+            for (Integer a : list) {
+                System.out.print(a + " ");
+            }
+            System.out.println();
+        }
+    }
 
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
@@ -41,16 +51,5 @@ public class Solution {
             res.add(part);
         }
         return res;
-    }
-
-    public static void main(String[] args) {
-        int[] num = {1, 2, 2};
-        List<List<Integer>> res = new Solution().subsets(num);
-        for (List<Integer> list : res) {
-            for (Integer a : list) {
-                System.out.print(a + " ");
-            }
-            System.out.println();
-        }
     }
 }

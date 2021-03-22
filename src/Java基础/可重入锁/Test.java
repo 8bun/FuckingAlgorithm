@@ -10,16 +10,15 @@ package 基本问题.可重入锁;
  * JVM会记下锁的持有线程，并且将计数器置为 1；此时其它线程请求该锁，则必须等待；而该“持有锁的线程”如果再次请求这个锁，
  * 就可以再次拿到这个锁，同时计数器会递增；当线程退出同步代码块时，计数器会递减，如果计数器为 0，则释放该锁。
  * 2.Synchronized进过编译，会在同步块的前后分别形成monitorenter和monitorexit这个两个字节码指令
- *
- *
+ * <p>
+ * <p>
  * 3.ReenTrantLock的实现是一种自旋锁，通过循环调用CAS操作来实现加锁。
  * 它的性能比较好也是因为避免了使线程进入内核态的阻塞状态
  * 4.在资源竞争不是很激励的情况下，synchronized的性能要优于ReentrantLock，
  * 带在资源紧张很激烈的情况下，synchronized的性能会下降的很快，而ReentrantLock的性能基本保持不变
- *
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/18 19:28
  * @level：
  */
@@ -29,21 +28,24 @@ public class Test {
         new MyThread().start();
     }
 }
-class Service1{
-    public synchronized void f1(){
+
+class Service1 {
+    public synchronized void f1() {
         System.out.println("service.f1");
         f2();
     }
-    public synchronized void f2(){
+
+    public synchronized void f2() {
         System.out.println("service.f2");
         f3();
     }
-    public synchronized void f3(){
+
+    public synchronized void f3() {
         System.out.println("service.f3");
     }
 }
 
-class MyThread extends Thread{
+class MyThread extends Thread {
     @Override
     public void run() {
         new Service1().f1();

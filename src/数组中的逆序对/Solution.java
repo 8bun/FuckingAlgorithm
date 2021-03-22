@@ -2,13 +2,14 @@ package 数组中的逆序对;
 
 /**
  * @description： 归并排序的过程：https://www.cnblogs.com/chengxiao/p/6194356.html
- * 将数组分为两部分，然后对两个数组分别又进行分解，知道分解成一个个的元素
+ * 将数组分为两部分，然后对两个数组分别又进行分解，直到分解成一个个的元素
  * 然后对
- * @url：https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
- * @限制：0 <= 数组长度 <= 50000
- * @author：Jack
- * @createTime：2020/3/5 11:20
- * @level：困难
+ * @link https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
+ * 此题做完可以接着这题https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/solution/ji-suan-you-ce-xiao-yu-dang-qian-yuan-su-de-ge-s-7/
+ * @limit 0 <= 数组长度 <= 50000
+ * @author cwq
+ * @createTime： 2020/3/5 11:20
+ * @level： 困难
  */
 public class Solution {
 
@@ -27,6 +28,11 @@ public class Solution {
 
     private long sum; //统计逆序对的个数
     private int[] nums;
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{1, 3, 2, 3, 1};
+        new Solution().reversePairs(nums);
+    }
 
     //归并排序
     public int reversePairs(int[] nums) {
@@ -79,7 +85,7 @@ public class Solution {
                 System.out.println("前大于后，构成逆序，需要排序：" + nums[i] + ">" + nums[j]);
                 System.out.println(nums[j] + " 已加到tmp数组");
                 tmp[index++] = nums[j++];  //num[i]留到后面加到index数组
-                sum += mid - i + 1; //此前，[l,mid]已经保证是有序（升序）的了，所以num[i]后面的都是大于num[j]的，都与num[j]构成逆序对
+                sum += mid - i + 1; //此前，[l,mid]已经保证是有序（升序）的了，所以num[i]到num[mid]的都是大于num[j]的，都与num[j]构成逆序对
             } else {
                 System.out.println("前小于后，不需要排序：" + nums[i] + "<" + nums[j]);
                 System.out.println(nums[i] + " 已加到tmp数组");
@@ -102,11 +108,6 @@ public class Solution {
             System.out.print(nums[k] + " ");
         }
         System.out.println("\n------------------------");
-    }
-
-    public static void main(String[] args) {
-        int[] nums = new int[]{1, 3, 2, 3, 1};
-        new Solution().reversePairs(nums);
     }
 
 }

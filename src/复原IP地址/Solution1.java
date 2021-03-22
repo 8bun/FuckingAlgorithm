@@ -14,9 +14,10 @@ public class Solution1 {
     private int[] segments = new int[SEG_COUNT];
     private int len;
     private String str;
+
     public List<String> restoreIpAddresses(String s) {
         int len = s.length();
-        if(len < 4 || len > 12) {
+        if (len < 4 || len > 12) {
             return res;
         }
         this.len = len;
@@ -26,7 +27,7 @@ public class Solution1 {
     }
 
     private void dfs(int segIndex, int segStart) {
-        if(segIndex == SEG_COUNT) {
+        if (segIndex == SEG_COUNT) {
             if (segStart == len) {
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < SEG_COUNT - 1; i++) {
@@ -40,20 +41,19 @@ public class Solution1 {
 
         if (segStart == len) return;
 
-        if(str.charAt(segStart) == '0') {
+        if (str.charAt(segStart) == '0') {
             segments[segIndex] = 0;
             dfs(segIndex + 1, segStart + 1);
         }
 
         int addr = 0;
 
-        for(int end = segStart; end < len; end++) {
+        for (int end = segStart; end < len; end++) {
             addr = addr * 10 + (str.charAt(end) - '0');
-            if(addr > 0 && addr <= 255) {
+            if (addr > 0 && addr <= 255) {
                 segments[segIndex] = addr;
                 dfs(segIndex + 1, end + 1);
-            }
-            else {
+            } else {
                 break;
             }
         }

@@ -3,16 +3,20 @@ package DP系列.博弈型DP.石子游戏II;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/7/7 17:00
+ * @author cwq
+ * @since 2020/7/7 17:00
  * @Description: 与前面的记忆化递归相同，这里采用 dp[start][m]表示当前剩余未选择的石子从下标start开始时，
  * M为m的情况下第一位抓的玩家所能获取的最大数量石头
  * 这里采用dp的思想
- * @Url:
+ * @link
  * @限制:
  * @Level:
  */
 public class Solution1 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
 
     public int stoneGameII(int[] piles) {
         int len = piles.length;
@@ -39,9 +43,5 @@ public class Solution1 {
             }
         }
         return dp[0][1];
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
     }
 }

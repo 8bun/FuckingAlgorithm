@@ -4,6 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * CountDownLatch：一个门有多把门锁，只有把所有的锁都解开了之后（值为0）才能执行
+ *
  * @author cwq
  * @since 2021/02/02
  */
@@ -16,6 +17,7 @@ public class FooBar4 {
      */
     private CountDownLatch fooC = new CountDownLatch(0);
     private CountDownLatch barC = new CountDownLatch(1);
+
     public FooBar4(int n) {
         this.n = n;
     }

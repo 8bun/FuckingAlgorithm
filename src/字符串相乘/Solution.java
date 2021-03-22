@@ -4,11 +4,15 @@ package 字符串相乘;
  * @description：
  * @url： https://leetcode-cn.com/problems/multiply-strings/
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/4/12 9:58
  * @level：
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        System.out.println(new Solution().multiply("1", "0"));
+    }
 
     public String multiply(String num1, String num2) {
 
@@ -43,9 +47,5 @@ public class Solution {
         //去掉0，结果最多只会出现首位是0的情况
         String ans = builder.toString();
         return ans.charAt(0) == '0' ? ans.substring(1) : ans;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new Solution().multiply("1", "0"));
     }
 }

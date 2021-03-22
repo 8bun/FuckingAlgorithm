@@ -16,7 +16,7 @@ import java.util.Arrays;
  * ①. 建立堆的过程, 从length/2 一直处理到0, 时间复杂度为O(n);
  * ②. 调整堆的过程是沿着堆的父子节点进行调整, 执行次数为堆的深度, 时间复杂度为O(logn);
  * ③. 堆排序的过程由n次第②步完成, 时间复杂度为O(nlogn).
- * @author： Jack
+ * @author： cwq
  * @createTime：2020/3/24 22:05
  * @level：
  */

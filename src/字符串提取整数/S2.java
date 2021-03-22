@@ -2,6 +2,10 @@ package 字符串提取整数;
 
 public class S2 {
 
+    public static void main(String[] args) {
+        System.out.println(new S2().myAtoi("3.64159"));
+    }
+
     public int myAtoi(String str) {
         int len = str.length();
 
@@ -25,7 +29,7 @@ public class S2 {
             sign = 1;
         } else if (firstChar == '-') {
             index++;
-            sign = -1;
+            sign = - 1;
         }
 
         // 不能使用 long 类型，这是题目说的
@@ -41,7 +45,7 @@ public class S2 {
             if (res > Integer.MAX_VALUE / 10 || (res == Integer.MAX_VALUE / 10 && (currChar - '0') > Integer.MAX_VALUE % 10)) {
                 return Integer.MAX_VALUE;
             }
-            if (res < Integer.MIN_VALUE / 10 || (res == Integer.MIN_VALUE / 10 && (currChar - '0') > -(Integer.MIN_VALUE % 10))) {
+            if (res < Integer.MIN_VALUE / 10 || (res == Integer.MIN_VALUE / 10 && (currChar - '0') > - (Integer.MIN_VALUE % 10))) {
                 return Integer.MIN_VALUE;
             }
 
@@ -51,8 +55,5 @@ public class S2 {
         }
 
         return res;
-    }
-    public static void main(String[] args) {
-        System.out.println(new S2().myAtoi("3.64159"));
     }
 }

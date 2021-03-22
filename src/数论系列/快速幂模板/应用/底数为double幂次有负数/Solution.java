@@ -1,26 +1,35 @@
-package 数论系列.快速幂模板.应用.底数为double幂次有负数;import java.util.Scanner;
+package 数论系列.快速幂模板.应用.底数为double幂次有负数;
+
+import java.util.Scanner;
+
 /**
- * @Author: Jack
- * @Date: 2020/6/11 11:47
- * @Description: 
- * @Url: https://leetcode-cn.com/problems/powx-n/
- * @限制:
- * -100.0 < x < 100.0
+ * @author cwq
+ * @since 2020/6/11 11:47
+ * @Description:
+ * @link https://leetcode-cn.com/problems/powx-n/
+ * @限制: -100.0 < x < 100.0
  * n 是 32 位有符号整数，其数值范围是 [−2^31, 2^31 − 1] 。
- * @Level: 
+ * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double res = new Solution().myPow(2.00, Integer.MIN_VALUE);
+        System.out.println(res);
+    }
 
     public double myPow(double x, int n) {
         if (x == 0.0) return x;
         long b = n;
-        if(n < 0) { // 幂次为负->底数变倒数，幂次变正
+        if (n < 0) { // 幂次为负->底数变倒数，幂次变正
             x = 1.0 / x;
             //Java 代码中 int32 变量 n∈[−2147483648,2147483647] ，因此当 n = -2147483648 时执行 n =−n 会因越界而赋值出错。解决方法是先将 n 存入 long 变量 b ，后面用 b 操作即可
-            b = -b;
+            b = - b;
         }
         return fastPow(x, b);
     }
+
     private double fastPow(double a, long k) {
         double res = 1.0;
         while (k != 0) {
@@ -37,11 +46,5 @@ public class Solution {
             k >>= 1;  //消去最后一位二进制
         }
         return res;
-    }
-
-    public static void main(String[] args){
-         Scanner scanner=new Scanner(System.in);
-         double res = new Solution().myPow(2.00, Integer.MIN_VALUE);
-         System.out.println(res);
     }
 }

@@ -4,7 +4,7 @@ package Java基础.jdk8新特性;
  * @description：
  * @url：
  * @限制：
- * @author：Jack
+ * @author：cwq
  * @createTime：2020/3/27 15:02
  * @level：
  */
@@ -13,11 +13,12 @@ public class User {
     private int age;
     private int salary;
 
-    public User(String username,int age,int salary){
-        this.username=username;
-        this.age=age;
-        this.salary=salary;
+    public User(String username, int age, int salary) {
+        this.username = username;
+        this.age = age;
+        this.salary = salary;
     }
+
     public String getUsername() {
         return username;
     }

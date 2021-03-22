@@ -1,10 +1,10 @@
 package 并查集系列;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/8 13:10
- * @Description:  Union-Find 算法
- * @Url:
+ * @author cwq
+ * @since 2020/5/8 13:10
+ * @Description: Union-Find 算法
+ * @link
  * @限制:
  * @Level:
  */

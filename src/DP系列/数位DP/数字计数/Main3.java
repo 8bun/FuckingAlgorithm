@@ -3,10 +3,10 @@ package DP系列.数位DP.数字计数;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/27 15:37
+ * @author cwq
+ * @since 2020/5/27 15:37
  * @Description: 四维
- * @Url: https://www.luogu.com.cn/problem/P2602
+ * @link https://www.luogu.com.cn/problem/P2602
  * @限制: 1≤a≤b≤10^12
  * @Level:
  */
@@ -25,17 +25,17 @@ public class Main3 {
             if (curDigit == 9)
                 System.out.println(s);
             else
-                System.out.print(s+" ");
+                System.out.print(s + " ");
         }
     }
 
     private static long solve(long num, int curDigit) {
         int k = 0; //记录有多少数位
         while (num != 0) {
-            digit[++k] = num % 10;
+            digit[++ k] = num % 10;
             num /= 10;
         }
-        return dfs(k, curDigit, 1, 1, 0) ;
+        return dfs(k, curDigit, 1, 1, 0);
     }
 
     private static long dfs(int curPos, int curDigit, int ifZero, int curLimit, int sum) {

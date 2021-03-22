@@ -17,8 +17,8 @@ package 对称的二叉树;
  * 3    3
  * 我们发现，对于一开始的root节点，其root.left与root.right是对称的，而对于root.left和root.right
  * 而言，root.left.left与root.right.right是对称的（值相等），root.left.right与root.right.left同理，所以可写出递归
- * @url: https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/
- * @author: Jack
+ * @link  https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/
+ * @author   cwq
  * @createTime: 2020/2/27 10:36
  * @level:
  */

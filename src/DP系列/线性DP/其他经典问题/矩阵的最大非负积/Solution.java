@@ -1,14 +1,15 @@
 package DP系列.线性DP.其他经典问题.矩阵的最大非负积;
 
 /**
- * @Author: Jack
- * @Date:
+ * @author cwq
+ * @since
  * @Description:
- * @Url: https://leetcode-cn.com/problems/maximum-non-negative-product-in-a-matrix/comments/
+ * @link https://leetcode-cn.com/problems/maximum-non-negative-product-in-a-matrix/comments/
  */
 public class Solution {
 
     private static final int MOD = (int) (1e9 + 7);
+
     public int maxProductPath(int[][] grid) {
         int row = grid.length, col = grid[0].length;
 
@@ -25,19 +26,17 @@ public class Solution {
         }
         for (int i = 1; i < row; i++) {
             for (int j = 1; j < col; j++) {
-                if(grid[i][j] < 0) {
+                if (grid[i][j] < 0) {
                     dpMin[i][j] = Math.max(dpMax[i - 1][j], dpMax[i][j - 1]) * grid[i][j];
                     dpMax[i][j] = Math.min(dpMin[i - 1][j], dpMin[i][j - 1]) * grid[i][j];
-                }
-                else if (grid[i][j] > 0){
+                } else if (grid[i][j] > 0) {
                     dpMin[i][j] = Math.min(dpMin[i - 1][j], dpMin[i][j - 1]) * grid[i][j];
                     dpMax[i][j] = Math.max(dpMax[i - 1][j], dpMax[i][j - 1]) * grid[i][j];
-                }
-                else {
+                } else {
                     dpMin[i][j] = dpMax[i][j] = 0;
                 }
             }
         }
-        return dpMax[row - 1][col - 1] < 0 ? -1 : (int) (dpMax[row - 1][col - 1] % MOD);
+        return dpMax[row - 1][col - 1] < 0 ? - 1 : (int) (dpMax[row - 1][col - 1] % MOD);
     }
 }

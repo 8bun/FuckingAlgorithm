@@ -11,9 +11,9 @@ import java.util.Arrays;
  * 由于dp[j]+1和dp[3]，不知道哪个大，所以要取其最大值作为dp[3]，
  * 如果num[j]>=num[3],则没有任何更新
  * 最后，再取dp[i]中的最大值就是所有情况的最大上升序列长度
- * @url： https://leetcode-cn.com/problems/longest-increasing-subsequence/
+ * @link https://leetcode-cn.com/problems/longest-increasing-subsequence/
  * @限制： 子序列可不连续，但是在数组中的相对顺序要不变
- * @author： Jack
+ * @author： cwq
  * @createTime： 2020/3/27 11:57
  * @level：
  */
@@ -24,7 +24,8 @@ public class Solution {
             return 0;
         int res = 1;
         int[] dp = new int[len];
-        Arrays.fill(dp, 1); //初始化，到自己的现在最大上升长度都为1
+        //初始化，到自己的现在最大上升长度都为1
+        Arrays.fill(dp, 1);
 
         for (int i = 0; i < len; i++) {
             for (int j = 0; j <= i - 1; j++) {

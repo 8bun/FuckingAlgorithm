@@ -1,14 +1,12 @@
 package DFS系列.合法二叉搜索树;
 
-import sun.reflect.generics.tree.Tree;
-
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/1 22:40
+ * @author cwq
+ * @since 2020/5/1 22:40
  * @Description: 实现一个函数，检查一棵二叉树是否为二叉搜索树。
- * @Url: https://leetcode-cn.com/problems/legal-binary-search-tree-lcci/
+ * @link https://leetcode-cn.com/problems/legal-binary-search-tree-lcci/
  * @限制:
  * @Level:
  */
@@ -16,11 +14,14 @@ class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
+
     TreeNode(int x) { val = x; }
 }
+
 public class Solution {
+
     public boolean isValidBST(TreeNode root) {
-        if (root==null)
+        if (root == null)
             return true;
         TreeNode maxLeft = root.left, minRight = root.right;
         // 找寻左子树中的最右（数值最大）节点
@@ -32,9 +33,6 @@ public class Solution {
 
         // 当前层是否合法
         boolean ret = (maxLeft == null || maxLeft.val < root.val) && (minRight == null || root.val < minRight.val);
-        return isValidBST(root.left)&&isValidBST(root.right)&&ret;
-    }
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        return isValidBST(root.left) && isValidBST(root.right) && ret;
     }
 }

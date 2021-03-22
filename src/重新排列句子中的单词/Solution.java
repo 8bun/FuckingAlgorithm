@@ -5,14 +5,18 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 /**
- * @Author: Jack
- * @Date: 2020/5/17 10:36
+ * @author cwq
+ * @since 2020/5/17 10:36
  * @Description:
- * @Url:
+ * @link
  * @限制:
  * @Level:
  */
 public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+    }
 
     public String arrangeWords(String text) {
         String[] strings = text.split(" ");
@@ -20,7 +24,7 @@ public class Solution {
             @Override
             public int compare(String o1, String o2) {
                 if (o1.length() != o2.length())
-                    return Integer.compare(o1.length(),o2.length());
+                    return Integer.compare(o1.length(), o2.length());
                 else return 0;
             }
         });
@@ -29,11 +33,7 @@ public class Solution {
             res.append(string.substring(0, 1).toLowerCase() + string.substring(1));
             res.append(" ");
         }
-        String r = res.deleteCharAt(res.length()-1).toString();
+        String r = res.deleteCharAt(res.length() - 1).toString();
         return r.substring(0, 1).toUpperCase() + r.substring(1);
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
     }
 }
