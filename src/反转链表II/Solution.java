@@ -23,6 +23,20 @@ public class Solution {
     }
 
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        return null;
+        ListNode dummy = new ListNode(-1), pre = dummy;
+        dummy.next = head;
+        // 最终让pre指向要反转的链表的第一个节点的前一个节点
+        for (int i = 0; i < left - 1; i++) {
+            pre = pre.next;
+        }
+        ListNode cur = pre.next;
+        for (int i = 0; i < right - left; i++) {
+            // cur.next一定是需要头插的removed节点，而pre永远保持不变
+            ListNode removed = cur.next;
+            cur.next = removed.next;
+            removed.next = pre.next;
+            pre.next = removed;
+        }
+        return dummy.next;
     }
 }

@@ -1,12 +1,12 @@
 package 链表中倒数第k个节点;
 
 /**
- * @description:定义两个指针，快指针 fast， 慢指针 low .
- * 让 fast先向前移动 kk 个位置，然后 low 和 fast 再一起向前移动 .
+ * @description: 定义两个指针，快指针 fast， 慢指针 low .
+ * 让 fast先向前移动 k 个位置，然后 low 和 fast 再一起向前移动 .
  * 当 fast 到达链表尾部，(这样就保证了fast与low相距k个节点)返回 low.
  * @link https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
  * @author  cwq
- * @createTime:2020/2/25 19:36
+ * @createTime: 2020/2/25 19:36
  * @level:简单
  */
 

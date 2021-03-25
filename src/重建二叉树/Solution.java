@@ -3,12 +3,10 @@ package 重建二叉树;
 import java.util.HashMap;
 
 /**
- * @description: 递归重建，从前序遍历找子树根节点，再在中序遍历中以根节点找到其左右子树，
+ * 递归重建，从前序遍历找子树根节点，再在中序遍历中以根节点找到其左右子树，
  * 再在左右子树中递归查找根节点..
  * @link https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/
- * @author  cwq
- * @createTime:2020/2/21 12:06
- * @level:中等
+ * @author cwq
  */
 class TreeNode {
     int val;
@@ -33,7 +31,9 @@ public class Solution {
 
     }
 
-    //分别表示递归时的同一侧子树前序遍历和中序遍历的数组下标边界
+    /**
+     * 分别表示递归时的同一侧子树前序遍历和中序遍历的数组下标边界
+     */
     private TreeNode Find(int preL, int preR, int inL, int inR) {
 
         //递归调用结束条件

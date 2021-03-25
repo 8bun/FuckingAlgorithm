@@ -3,9 +3,9 @@ package 二叉树的镜像;
 import java.util.Stack;
 
 /**
+ * @author cwq
  * @description:使用栈或队列解决，将其首部节点出栈或队列，然后交换其左右子树，再将左节点和右节点入栈或队列，进入下一次循环 直到栈或队列为空
  * @link
- * @author  cwq
  * @createTime:2020/2/27 10:13
  * @level:
  */

@@ -1,11 +1,8 @@
 package 合并两个排序的链表;
 
 /**
- * @description:
  * @link https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/
- * @author  cwq
- * @createTime:2020/2/25 20:03
- * @level:简单
+ * @author cwq
  */
 class ListNode {
     int val;
