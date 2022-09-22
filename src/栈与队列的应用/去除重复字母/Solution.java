@@ -1,4 +1,4 @@
-package 栈系列.去除重复字母;
+package 栈与队列的应用.去除重复字母;
 
 import java.util.Stack;
 

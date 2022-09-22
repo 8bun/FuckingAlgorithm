@@ -1,4 +1,4 @@
-package 跳跃游戏;
+package 贪心系列.跳跃游戏;
 
 import java.util.Scanner;
 
