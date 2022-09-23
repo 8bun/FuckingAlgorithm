@@ -1,4 +1,4 @@
-package 递归系列.路径总和;
+package 回溯递归系列.路径总和;
 
 /**
  * https://leetcode.cn/problems/path-sum/
