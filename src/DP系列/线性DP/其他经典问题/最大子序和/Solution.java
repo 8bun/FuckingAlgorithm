@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 /**
  * @author cwq
- * @since 2020/5/9 11:46
  * @Description: 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
  * 输入: [-2,1,-3,4,-1,2,1,-5,4],
  * 输出: 6
@@ -12,11 +11,14 @@ import java.util.Scanner;
  * @link https://leetcode-cn.com/problems/maximum-subarray/
  * @限制:
  * @Level:
+ * @since 2020/5/9 11:46
  */
 public class Solution {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println();
     }
+
 
     public int maxSubArray(int[] nums) {
         int len = nums.length;

@@ -1,14 +1,14 @@
-package 编码方法;
+package DP系列.区间DP.解码方法;
 
 import java.util.Scanner;
 
 /**
  * @author cwq
- * @since 2020/4/19 23:02
  * @Description: 动态规划
  * @link https://leetcode-cn.com/problems/decode-ways/
  * @限制:
  * @Level:
+ * @since 2020/4/19 23:02
  */
 public class Solution {
 

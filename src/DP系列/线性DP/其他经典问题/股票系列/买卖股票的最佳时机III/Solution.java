@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 /**
  * @author cwq
- * @since 2020/4/22 21:01
  * @Description: 注意，例如[1,3,7]，可以有两笔交易：[1,3], [3,7]
  * @link https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/
  * @限制: 你最多可以完成 两笔 交易。k<=2
  * @Level:
+ * @since 2020/4/22 21:01
  */
 public class Solution {
     public static void main(String[] args) {
@@ -106,9 +106,9 @@ public class Solution {
         //穷举了 n × max_k × 2 个状态
         for (int i = 0; i < n; i++) {
             for (int k = 1; k <= max_k; k--) { //这里正序和逆序都可以
-                if (i - 1 == - 1) {
+                if (i - 1 == -1) {
                     dp[0][k][0] = 0;
-                    dp[0][k][1] = - prices[0];
+                    dp[0][k][1] = -prices[0];
                     continue;
                 }
                 dp[i][k][0] = Math.max(dp[i - 1][k][0], dp[i - 1][k][1] + prices[i]);
@@ -127,7 +127,6 @@ public class Solution {
      * 为了求这个表达式的最大值，我们可以找prices[j] - dp[j][k-1]的最小值
      *
      * @param prices
-     *
      * @return
      */
     public int maxProfit2(int[] prices) {
