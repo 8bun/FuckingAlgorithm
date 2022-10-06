@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * https://www.cnblogs.com/grandyang/p/5933787.html
+ *
  * @author cwq
  * @link https://leetcode-cn.com/problems/split-array-largest-sum/
  * @since 2021/03/23
@@ -19,6 +20,7 @@ public class Solution {
         for (int i = 0; i < n; i++) {
             prefix[i + 1] = nums[i] + prefix[i];
         }
+        // 关于边界处理的解释，详见 https://leetcode.cn/problems/split-array-largest-sum/solution/dong-tai-gui-hua-jie-fen-ge-shu-zu-ired-fox-by-a-f/
         dp[0][0] = 0;
         // 前i个数分成j组
         for (int i = 1; i <= n; i++) {
